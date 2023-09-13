@@ -19,18 +19,7 @@
 -   Automação/facilitação das vendas (registros e efetuação)
 -   Controle e relatórios de finanças
 ## 2. Requisitos
-### 2.1 Requisitos Funcionais
-#### 2.1.1 Cadastro de peças
--   Modelo da peça
--   Categorização em Ouro 18K, Ouro 10K, prata
--   Peso em gramas
--   Preço
--   Data de entrada da peça
--   Data de saída da peça
-#### 2.1.2 Controle de finanças
--   Entradas e saídas (separados em custos fixos e variados)
--   Registros de compras de materiais (ouro, prata, soldas, ferramentas)
--   Registros de compras de peças (modelo, peso, fonte)
--   Registros de vendas (conserto, fabricação e venda de peças);
--   Relatórios (gastos e entradas por categoria)
- 
+
+<table>
+    
+</table>
