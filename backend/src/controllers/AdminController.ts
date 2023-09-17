@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import fs from "fs";
 
 export async function getEmployee(req: Request, res: Response) {
     const { id } = req.params;
