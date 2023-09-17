@@ -2,8 +2,15 @@ import { Router } from "express";
 
 const router: Router = Router();
 
-import { getAdmin } from "../controllers/AdminController";
+import { getEmployee, getAllEmployees, createEmployee, editEmployee, deleteEmployee } from "../controllers/AdminController";
 
-router.get("/", getAdmin);
+// Employee CRUD Routes
+router.get("/employee/:id", getEmployee);
+router.get("/employee/", getAllEmployees);
+router.post("/employee", createEmployee);
+router.put("/employee/:id", editEmployee);
+router.delete("/employee/:id", deleteEmployee);
 
-export default router;
+// Finance CRUD Routes
+
+export default router; 
