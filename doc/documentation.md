@@ -15,9 +15,9 @@
 -   Divulgação em social media (Instagram/Facebook)
 -   Entregas de joias por correio
 
-<img src="./img/envelope.jpg" alt="Cartao de visita">
-<img src="./img/garantia.jpg" alt="Garantia">
-<img src="./img/cartaovisita.jpg" alt="Cartao visita">
+<img src="./img/envelope.jpg" alt="Cartao de visita" width="300px" height="500px">
+<img src="./img/garantia.jpg" alt="Garantia" width="300px" height="500px">
+<img src="./img/cartaovisita.jpg" alt="Cartao visita" width="300px" height="500px">
 
 ### 1.4 Problemas encontrados
 -   Difícil controle de estoque e registro de vendas (informações da venda, com imagens dos envelopes e afins, estão atualmente organizados em pastas soltas)
