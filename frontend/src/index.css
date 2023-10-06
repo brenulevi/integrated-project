@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a, p {
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", sans-serif;
+}
+
+input:focus {
+    outline: none;
+}
+
+:root {
+    --primary-color: #EDB546;
+    --light-primary-color: #ffbf40;
+    --small-text-color: #474747;
+    --light-small-text-color: #5a5a5a;
+}
