@@ -10,14 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 import adminRoutes from "./routes/adminRoutes";
-import employeeRoutes from "./routes/employeeRoutes";
-import serviceRoutes from "./routes/serviceRoutes";
-import productRoutes from "./routes/productRoutes";
+import userRoutes from "./routes/userRoutes";
 
-app.use("/admin", adminRoutes);
-app.use("/employee", employeeRoutes);
-app.use("/service", serviceRoutes);
-app.use("/product", productRoutes);
+app.use("/user", userRoutes);
+app.use("/admin", adminRoutes)
 
 const PORT: any = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));

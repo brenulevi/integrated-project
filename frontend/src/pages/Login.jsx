@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import "./Login.css";
 
 import { FaUser, FaLock } from "react-icons/fa";
@@ -6,6 +8,20 @@ import logo from "../images/logo.png";
 
 function Login() {
     document.title = "Login - DJK Joias";
+
+    function submitLogin(event)
+    {
+      event.preventDefault();
+
+      const form = document.forms[0];
+
+      axios.post("http://localhost:3333/user/login", {
+        username: form.elements[0].value,
+        password: form.elements[1].value
+      }).then((response) => {
+        console.log(response);
+      });
+    }
     
   return (
     <div className="content">
@@ -14,7 +30,7 @@ function Login() {
       </header>
       <main id="main">
         <div className="form">
-          <form method="post">
+          <form method="post" onSubmit={(event) => submitLogin(event)}>
             <h2>Login</h2>
 
             <div className="input-section">
