@@ -20,6 +20,8 @@ function Login() {
         password: form.elements[1].value
       }).then((response) => {
         console.log(response);
+      }).catch(err => {
+        console.error(err);
       });
     }
     
