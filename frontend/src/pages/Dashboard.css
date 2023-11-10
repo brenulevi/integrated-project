@@ -14,9 +14,24 @@
     justify-content: space-between;
 }
 
+.dashboard-headerSection-alt{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-headerSection-bottom{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
 .dashboard-trademark{
-    width: 50%;
     padding-left: 0.5rem;
+    width: 50%;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -31,13 +46,88 @@
     cursor:  pointer;
 }
 
-.dashboard-profileIcon{
-    height: 50%;
-    text-align: right;
+.dasboard-input-section i {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .5rem;
+    font-size: .8rem;
+}
+
+.dashboard-input-section {
+    border: 1px solid #e7e7e7;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    background-color: white ;
+}
+
+.dashboard-input-section input {
+    padding-left: 1rem;
+    width: 100%;
+    height: 2rem;
+    border: none;
+}
+
+.dashboard-input-section button {
+    background-color: rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0);
+    border-left-color: rgba(0,0,0,0.2);
+    width: 2rem;
+    font-size: 1rem;
+}
+.dashboard-input-section button:hover {
+    cursor: pointer;
+}
+
+/* .dashboard-searchIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+} */
+
+.dashboard-headerSection{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-iconsButton{
+    bottom: 0;
+    padding: 0.25rem;
+    background-color: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,0);
+}
+
+.dashboard-iconsButton.active{
+    border-bottom-color: black;
+}
+
+.dashboard-Icons {
+    font-size: 1.25rem;;
 }
 
 .dashboard-main {
+    margin-top: 11rem;
+    margin-bottom: 4rem;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
 
+.dashboard-main button {
+    background-color: var(--primary-color);
+    border: none;
+    width: 80%;
+    height: 4rem;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .dashboard-footer {
@@ -48,7 +138,7 @@
     bottom: 0;
 }
 
-.dashboard-footerButton {
+.dashboard-footer button {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0);
@@ -56,6 +146,7 @@
     border: none;
     text-align: center;
     transition: 0.3s;
+    font-weight:bold;
 }
 
 .dashboard-footerButton:hover {
