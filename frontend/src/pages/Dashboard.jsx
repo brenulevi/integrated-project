@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./Dashboard.css"
-import { FaUserAlt, FaWarehouse, FaDollarSign, FaRegListAlt, FaHammer, FaSearch, FaLock } from "react-icons/fa";
+import { FaUserAlt, FaWarehouse, FaDollarSign, FaRegListAlt, FaHammer, FaSearch} from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 
 
