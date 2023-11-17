@@ -1,11 +1,25 @@
-import axios from "axios";
+import React, { useEffect } from "react";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 import "./Dashboard.css"
+
 import { FaUserAlt, FaWarehouse, FaDollarSign, FaRegListAlt, FaHammer, FaSearch} from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 
-
 function Dashboard() {
     document.title = "Login - DJK Joias";
+    
+    const navigation = useNavigate();
+    
+    useEffect(() => {
+        const token = Cookies.get("token");
+
+        if(!token)
+            navigation("/");
+        
+    }, []);
+
     return (
         <>
             <div className="dashboard-header">
