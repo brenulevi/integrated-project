@@ -4,8 +4,22 @@ import { FaUserAlt, FaWarehouse, FaDollarSign, FaRegListAlt, FaHammer, FaSearch}
 import { IoSettings } from "react-icons/io5";
 
 
+
+
 function Dashboard() {
     document.title = "Login - DJK Joias";
+
+    const [activeButtons, setActiveButton] = useState(0);
+
+    const dashboardElements = document.querySelectorAll(`.dashboard-iconsButton`);
+
+    dashboardElements.forEach(dashboardElement => {
+        dashboardElement.addEventListener('click', () => {
+            document.querySelector('.active')?.classList.remove('active');
+            dashboardElement.classList.add('active');
+        });
+    });
+
     return (
         <>
             <div className="dashboard-header">
