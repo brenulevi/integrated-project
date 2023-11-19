@@ -5,6 +5,8 @@ import { sign } from "jsonwebtoken";
 
 import db from "../database";
 
+import { CustomPayload, CustomRequest } from "../middlewares/userMiddlewares";
+
 export async function loginUser(req: Request, res: Response) {
     const { username, password }: { username: string, password: string } = req.body;
     try {
@@ -47,4 +49,12 @@ export async function registerUser(req: Request, res: Response) {
     } catch (err: unknown) {
         console.error(err);
     }
+}
+
+export async function getLoggedUser(req: Request, res: Response) {
+    const { uid } = (req as CustomRequest).payload as CustomPayload;
+
+    const data = await db.query("SELECT name FROM users WHERE coduser=$1", [uid]);
+
+    res.status(200).json(data);
 }

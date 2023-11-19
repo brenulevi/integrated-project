@@ -22,7 +22,7 @@ function Login() {
       username: form.elements[0].value,
       password: form.elements[1].value
     }).then((response) => {
-      Cookies.set("token", response.data.token);
+      Cookies.set("token", response.data.token, { sameSite: "Lax" });
       navigation("/dashboard");
     }).catch(err => {
       console.error(err);
