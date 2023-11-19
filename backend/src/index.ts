@@ -13,7 +13,7 @@ import adminRoutes from "./routes/adminRoutes";
 import userRoutes from "./routes/userRoutes";
 
 app.use("/user", userRoutes);
-app.use("/admin", adminRoutes)
+app.use("/admin", adminRoutes);
 
 const PORT: any = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));

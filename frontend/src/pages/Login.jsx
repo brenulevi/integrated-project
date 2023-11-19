@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import "./Login.css";
 
@@ -7,24 +9,26 @@ import { FaUser, FaLock } from "react-icons/fa";
 import logo from "../images/logo.png";
 
 function Login() {
-    document.title = "Login - DJK Joias";
+  document.title = "Login - DJK Joias";
 
-    function submitLogin(event)
-    {
-      event.preventDefault();
+  const navigation = useNavigate();
 
-      const form = document.forms[0];
+  function submitLogin(event) {
+    event.preventDefault();
 
-      axios.post("http://localhost:3333/user/login", {
-        username: form.elements[0].value,
-        password: form.elements[1].value
-      }).then((response) => {
-        console.log(response);
-      }).catch(err => {
-        console.error(err);
-      });
-    }
-    
+    const form = document.forms[0];
+
+    axios.post("http://localhost:3333/user/login", {
+      username: form.elements[0].value,
+      password: form.elements[1].value
+    }).then((response) => {
+      Cookies.set("token", response.data.token);
+      navigation("/dashboard");
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
   return (
     <div className="content">
       <header id="header">
