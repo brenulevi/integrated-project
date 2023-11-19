@@ -1,13 +1,15 @@
 import express, { Express } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app: Express = express();
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
+app.use(cookieParser());
 
 import adminRoutes from "./routes/adminRoutes";
 import userRoutes from "./routes/userRoutes";
@@ -15,5 +17,5 @@ import userRoutes from "./routes/userRoutes";
 app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
 
-const PORT: any = process.env.PORT;
+const PORT: string | undefined = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
