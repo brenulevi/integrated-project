@@ -8,8 +8,6 @@ import "./Dashboard.css"
 import { FaUserAlt, FaWarehouse, FaDollarSign, FaRegListAlt, FaHammer, FaSearch } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 
-
-
 function Dashboard() {
     document.title = "Login - DJK Joias";
 
@@ -32,17 +30,15 @@ function Dashboard() {
 
     }, []);
 
+    function underlineButton(e) {
+        const dashboardElements = document.querySelectorAll(`.dashboard-iconsButton`);
 
-    const [activeButtons, setActiveButton] = useState(0);
-
-    const dashboardElements = document.querySelectorAll(`.dashboard-iconsButton`);
-
-    dashboardElements.forEach(dashboardElement => {
-        dashboardElement.addEventListener('click', () => {
-            document.querySelector('.active')?.classList.remove('active');
-            dashboardElement.classList.add('active');
+        dashboardElements.forEach(dashboardElement => {
+                dashboardElement.classList.remove('active');
         });
-    });
+
+        e.currentTarget.classList.add('active');
+    }
 
     return (
         <>
@@ -52,7 +48,7 @@ function Dashboard() {
                     <button className="dashboard-profileButton">
                         <FaUserAlt />
                         <br></br>
-                        undefined
+                        {undefined}
                     </button>
                 </div>
                 <div className="dashboard-headerSection-alt">
@@ -63,20 +59,20 @@ function Dashboard() {
                         </button>
                     </div>
                 </div>
-                <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw' }}>
-                    <button className="dashboard-iconsButton active">
+                <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw'}}>
+                    <button className="dashboard-iconsButton active" onClick={(e) => underlineButton(e)}>
                         <FaWarehouse className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton">
+                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
                         <FaDollarSign className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton">
+                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
                         <FaHammer className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton">
+                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
                         <IoSettings className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton">
+                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
                         <FaRegListAlt className="dashboard-Icons" />
                     </button>
                 </div>
