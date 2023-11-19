@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,6 +13,8 @@ function Dashboard() {
 
     const navigation = useNavigate();
 
+    const [username, setUsername] = useState("undefined");
+
     useEffect(() => {
         const token = Cookies.get("token");
 
@@ -21,20 +23,20 @@ function Dashboard() {
             return;
         }
 
-        const request = axios.get("http://localhost:3333/user/test", { withCredentials: true });
+        const request = axios.get("http://localhost:3333/user/me", { withCredentials: true });
         request.then(response => {
-            console.log(response);
+            setUsername(response.data.rows[0].name);
         }).catch(err => {
             console.log(err);
         });
 
-    }, []);
+    }, [navigation]);
 
     function underlineButton(e) {
         const dashboardElements = document.querySelectorAll(`.dashboard-iconsButton`);
 
         dashboardElements.forEach(dashboardElement => {
-                dashboardElement.classList.remove('active');
+            dashboardElement.classList.remove('active');
         });
 
         e.currentTarget.classList.add('active');
@@ -48,7 +50,7 @@ function Dashboard() {
                     <button className="dashboard-profileButton">
                         <FaUserAlt />
                         <br></br>
-                        {undefined}
+                        {username}
                     </button>
                 </div>
                 <div className="dashboard-headerSection-alt">
@@ -59,7 +61,7 @@ function Dashboard() {
                         </button>
                     </div>
                 </div>
-                <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw'}}>
+                <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw' }}>
                     <button className="dashboard-iconsButton active" onClick={(e) => underlineButton(e)}>
                         <FaWarehouse className="dashboard-Icons" />
                     </button>

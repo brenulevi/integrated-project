@@ -1,13 +1,13 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 
 const router: Router = Router();
 
-import { loginUser, registerUser } from "../controllers/UserController";
+import { loginUser, registerUser, getLoggedUser } from "../controllers/UserController";
+
+import { verifyToken } from "../middlewares/userMiddlewares";
 
 router.post("/login", loginUser);
 router.post("/register", registerUser);
-router.get("/test", (req: Request, res: Response) => {
-    res.json(req.cookies);
-})
+router.get("/me", verifyToken, getLoggedUser);
 
 export default router;
