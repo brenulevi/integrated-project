@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import "./Dashboard.css"
+import DashboardConfigs from "./DashboardConfigs";
+import DashboardFinances from "./DashboardFinances";
+import DashboardProducts from "./DashboardProducts";
+import DashboardReports from "./DashboardReports";
+import DashboardServices from "./DashboardServices";
 
 import { FaUserAlt, FaWarehouse, FaDollarSign, FaRegListAlt, FaHammer, FaSearch} from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
@@ -14,6 +20,8 @@ function Dashboard() {
     
     const navigation = useNavigate();
     
+    const [activeDashboard, setActiveDashboard] = useState(0);
+
     useEffect(() => {
         const token = Cookies.get("token");
 
@@ -30,6 +38,8 @@ function Dashboard() {
         });
 
         e.currentTarget.classList.add('active');
+
+        setActiveDashboard(parseInt(e.currentTarget.id));
     }
 
     return (
@@ -51,41 +61,25 @@ function Dashboard() {
                     </div>
                 </div>
                 <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw'}}>
-                    <button className="dashboard-iconsButton active" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton active" id="0" onClick={(e) => underlineButton(e)}>
                         <FaWarehouse className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
-                        <FaDollarSign className="dashboard-Icons" />
-                    </button>
-                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="1" onClick={(e) => underlineButton(e)}>
                         <FaHammer className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="2" onClick={(e) => underlineButton(e)}>
+                        <FaDollarSign className="dashboard-Icons" />
+                    </button>
+                    <button className="dashboard-iconsButton" id="3" onClick={(e) => underlineButton(e)}>
                         <IoSettings className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="4" onClick={(e) => underlineButton(e)}>
                         <FaRegListAlt className="dashboard-Icons" />
                     </button>
                 </div>
             </div>
 
-            <main className="dashboard-main">
-                <button>
-                    Consultar entradas e saídas
-                </button>
-                <button>
-                    Controle de vendas
-                </button>
-                <button>
-                    Controle de peças
-                </button>
-                <button>
-                    Compra de materiais
-                </button>                
-                <button>
-                    Entrega de serviço
-                </button>
-            </main>
+            {activeDashboard === 0 ? <DashboardProducts/> : activeDashboard === 1 ? <DashboardServices/> : activeDashboard === 2 ? <DashboardFinances/> : activeDashboard === 3 ? <DashboardConfigs /> : <DashboardReports/>}
 
             <footer className="dashboard-footer">
                 <button style={{fontWeight:"bold"}}>Sair do sistema</button>
