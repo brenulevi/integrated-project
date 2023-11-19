@@ -103,6 +103,11 @@
     border-color: rgba(0,0,0,0);
 }
 
+.dashboard-iconsButton:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 .dashboard-iconsButton.active{
     border-bottom-color: black;
 }
