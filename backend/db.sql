@@ -1,5 +1,7 @@
 CREATE DATABASE djkjoias;
 
+\c djkjoias
+
 CREATE TABLE users (
     coduser serial,
     name varchar(30) not null,

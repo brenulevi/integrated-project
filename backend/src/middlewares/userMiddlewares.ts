@@ -1,8 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 
-const router = Router();
-
-import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 export interface CustomRequest extends Request {
     payload: string | JwtPayload;
