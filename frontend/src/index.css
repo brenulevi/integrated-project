@@ -21,4 +21,5 @@ input:focus {
     --light-primary-color: #ffbf40;
     --small-text-color: #474747;
     --light-small-text-color: #5a5a5a;
+    --header-height: 9rem;
 }

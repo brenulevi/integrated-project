@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 
 import "./Dashboard.css"
+
 import DashboardConfigs from "./DashboardConfigs";
 import DashboardFinances from "./DashboardFinances";
 import DashboardProducts from "./DashboardProducts";
@@ -18,7 +18,7 @@ function Dashboard() {
     document.title = "Login - DJK Joias";
 
     const navigation = useNavigate();
-    
+
     const [activeDashboard, setActiveDashboard] = useState(0);
 
     const [username, setUsername] = useState("undefined");
@@ -40,7 +40,8 @@ function Dashboard() {
 
     }, [navigation]);
 
-    function underlineButton(e) {
+    // ( > - < )
+    function underlineButtonPlus(e) {
         const dashboardElements = document.querySelectorAll(`.dashboard-iconsButton`);
 
         dashboardElements.forEach(dashboardElement => {
@@ -54,7 +55,7 @@ function Dashboard() {
 
     return (
         <>
-            <div className="dashboard-header">
+            <header className="dashboard-header">
                 <div className="dashboard-headerSection">
                     <h1 className="dashboard-trademark">DJK Joias</h1>
                     <button className="dashboard-profileButton">
@@ -71,26 +72,26 @@ function Dashboard() {
                         </button>
                     </div>
                 </div>
-                <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw'}}>
-                    <button className="dashboard-iconsButton active" id="0" onClick={(e) => underlineButton(e)}>
+                <div className="dashboard-headerSection-bottom" style={{ paddingLeft: '10vw', paddingRight: '10vw' }}>
+                    <button className="dashboard-iconsButton active" id="0" onClick={(e) => underlineButtonPlus(e)}>
                         <FaWarehouse className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" id="1" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="1" onClick={(e) => underlineButtonPlus(e)}>
                         <FaHammer className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" id="2" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="2" onClick={(e) => underlineButtonPlus(e)}>
                         <FaDollarSign className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" id="3" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="3" onClick={(e) => underlineButtonPlus(e)}>
                         <IoSettings className="dashboard-Icons" />
                     </button>
-                    <button className="dashboard-iconsButton" id="4" onClick={(e) => underlineButton(e)}>
+                    <button className="dashboard-iconsButton" id="4" onClick={(e) => underlineButtonPlus(e)}>
                         <FaRegListAlt className="dashboard-Icons" />
                     </button>
                 </div>
-            </div>
+            </header>
 
-            {activeDashboard === 0 ? <DashboardProducts/> : activeDashboard === 1 ? <DashboardServices/> : activeDashboard === 2 ? <DashboardFinances/> : activeDashboard === 3 ? <DashboardConfigs /> : <DashboardReports/>}
+            {activeDashboard === 0 ? <DashboardProducts /> : activeDashboard === 1 ? <DashboardServices /> : activeDashboard === 2 ? <DashboardFinances /> : activeDashboard === 3 ? <DashboardConfigs /> : <DashboardReports />}
 
             <footer className="dashboard-footer">
                 <button style={{ fontWeight: "bold" }}>Sair do sistema</button>
