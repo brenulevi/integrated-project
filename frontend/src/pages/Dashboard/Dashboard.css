@@ -116,6 +116,12 @@
     font-size: 1.25rem;;
 }
 
+.dashboard-profileButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .dashboard-main {
     margin-top: calc(var(--header-height) + 2rem);
     margin-bottom: 4rem;

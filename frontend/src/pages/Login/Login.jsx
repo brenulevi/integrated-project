@@ -6,7 +6,7 @@ import "./Login.css";
 
 import { FaUser, FaLock } from "react-icons/fa";
 
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
 
 function Login() {
   document.title = "Login - DJK Joias";
