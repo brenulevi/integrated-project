@@ -53,6 +53,11 @@ function Dashboard() {
         setActiveDashboard(parseInt(e.currentTarget.id));
     }
 
+    function logout() {
+        Cookies.remove("token");
+        navigation("/");
+    }
+
     return (
         <>
             <header className="dashboard-header">
@@ -94,7 +99,11 @@ function Dashboard() {
             {activeDashboard === 0 ? <DashboardProducts /> : activeDashboard === 1 ? <DashboardServices /> : activeDashboard === 2 ? <DashboardFinances /> : activeDashboard === 3 ? <DashboardConfigs /> : <DashboardReports />}
 
             <footer className="dashboard-footer">
-                <button style={{ fontWeight: "bold" }}>Sair do sistema</button>
+                <button onClick={() => logout()}>
+                    <strong>
+                    Sair do sistema
+                    </strong>
+                </button>
             </footer>
         </>
     );
