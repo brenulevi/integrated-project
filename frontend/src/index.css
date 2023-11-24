@@ -23,3 +23,24 @@ input:focus {
     --light-small-text-color: #5a5a5a;
     --header-height: 9rem;
 }
+
+.input-section {
+    border: 1px solid #e7e7e7;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-section i {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .5rem;
+    font-size: .8rem;
+}
+
+.input-section input {
+    width: 100%;
+    height: 2.5rem;
+    border: none;
+}

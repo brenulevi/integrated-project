@@ -45,7 +45,9 @@ function Dashboard() {
       .then((response) => {
         setUsername(
           `${response.data.rows[0].name.split(" ")[0]} ${
-            response.data.rows[0].name.split(" ")[response.data.rows[0].name.split(" ").length - 1]
+            response.data.rows[0].name.split(" ")[
+              response.data.rows[0].name.split(" ").length - 1
+            ]
           }`
         );
       })
@@ -57,7 +59,7 @@ function Dashboard() {
   // ( > - < )
   function underlineButtonPlus(e) {
     const dashboardElements = document.querySelectorAll(
-      `.dashboard-iconsButton`
+      `.Dashboard .iconsButton`
     );
 
     dashboardElements.forEach((dashboardElement) => {
@@ -72,62 +74,67 @@ function Dashboard() {
   function logout() {
     Cookies.remove("token");
     navigation("/");
-}
+  }
 
   return (
-    <>
-      <header className="dashboard-header">
-        <div className="dashboard-headerSection">
-          <h1 className="dashboard-trademark">DJK Joias</h1>
+    <div className="Dashboard">
+      <header className="header">
+        <div className="headerSection">
+          <h1 className="trademark">DJK Joias</h1>
           <button
-            className="dashboard-profileButton"
+            className="profileButton"
             onClick={() => navigation("/profile")}
           >
             <FaUserAlt />
             {username}
           </button>
         </div>
-        <div className="dashboard-headerSection-alt">
-          <div className="dashboard-input-section">
+        <div className="headerSection-alt">
+          <div className="input-section">
             <input placeholder="Pesquise algo legal" />
             <button>
-              <FaSearch className="dashboard-searchIcon" />
+              <FaSearch className="searchIcon" />
             </button>
           </div>
         </div>
         <div
-          className="dashboard-headerSection-bottom"
+          className="headerSection-bottom"
           style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
         >
           <button
-            className="dashboard-iconsButton acti GRAFOS ve"
+            className="iconsButton active"
+            id="0"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaWarehouse className="dashboard-Icons" />
+            <FaWarehouse className="Icons" />
           </button>
           <button
-            className="dashboard-iconsButton"
+            className="iconsButton"
+            id="1"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaHammer className="dashboard-Icons" />
+            <FaHammer className="Icons" />
           </button>
           <button
-            className="dashboard-iconsButton"
+            className="iconsButton"
+            id="2"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaDollarSign className="dashboard-Icons" />
+            <FaDollarSign className="Icons" />
           </button>
           <button
-            className="dashboard-iconsButton"
+            className="iconsButton"
+            id="3"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <IoSettings className="dashboard-Icons" />
+            <IoSettings className="Icons" />
           </button>
           <button
-            className="dashboard-iconsButton"
+            className="iconsButton"
+            id="4"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaRegListAlt className="dashboard-Icons" />
+            <FaRegListAlt className="Icons" />
           </button>
         </div>
       </header>
@@ -144,12 +151,12 @@ function Dashboard() {
         <DashboardReports />
       )}
 
-      <footer className="dashboard-footer">
+      <footer className="footer">
         <button onClick={() => logout()}>
           <strong>Sair do sistema</strong>
         </button>
       </footer>
-    </>
+    </div>
   );
 }
 

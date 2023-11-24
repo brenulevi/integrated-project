@@ -1,12 +1,11 @@
 function DashboardConfigs() {
-    
-    return (
-        <main className="dashboard-main">
-            <button>
-                Configs
-            </button>
-        </main>
-    )
+  return (
+    <div className="Dashboard">
+      <main className="main">
+        <button>Configs</button>
+      </main>
+    </div>
+  );
 }
 
 export default DashboardConfigs;

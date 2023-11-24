@@ -30,7 +30,7 @@ function Login() {
   }
 
   return (
-    <div className="content">
+    <div className="Login">
       <header id="header">
         <img src={logo} alt="Logo" className="logo" />
       </header>

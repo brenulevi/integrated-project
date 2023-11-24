@@ -1,23 +1,16 @@
 import React from "react";
 
 function DashboardProducts() {
-    
-    return (
-        <main className="dashboard-main">
-            <button>
-                Cadastrar produto
-            </button>
-            <button>
-                Alterar produto
-            </button>
-            <button>
-                Deletar produto
-            </button>
-            <button>
-                Visualizar produtos
-            </button>
-        </main>
-    )
+  return (
+    <div className="Dashboard">
+      <main className="main">
+        <button>Cadastrar produto</button>
+        <button>Alterar produto</button>
+        <button>Deletar produto</button>
+        <button>Visualizar produtos</button>
+      </main>
+    </div>
+  );
 }
 
 export default DashboardProducts;
