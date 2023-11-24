@@ -54,7 +54,7 @@ export async function registerUser(req: Request, res: Response) {
 export async function getLoggedUser(req: Request, res: Response) {
     const { uid } = (req as CustomRequest).payload as CustomPayload;
 
-    const data = await db.query("SELECT name FROM users WHERE coduser=$1", [uid]);
+    const data = await db.query("SELECT name, email, username FROM users WHERE coduser=$1", [uid]);
 
     res.status(200).json(data);
 }
