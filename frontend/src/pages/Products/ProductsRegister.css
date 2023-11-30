@@ -21,6 +21,10 @@
     color: black;
 }
 
+.ProductsRegister main {
+    padding: 1rem;
+}
+
 .ProductsRegister #footer {
     background-color: var(--primary-color);
     width: 100vw;
@@ -28,4 +32,31 @@
 
     position: fixed;
     bottom: 0;
+}
+
+.ProductsRegister input{
+    display: block;
+    font-size:11px;
+    padding:4px 2px;
+    border:solid 1px var(--primary-color);
+    width:15rem;
+    margin:2px 0 20px 10px;
+}
+
+.ProductsRegister input[type="submit"]{
+    width:7.5rem;
+    justify-content: center;
+}
+
+.ProductsRegister input[type="radio"]{
+    width:2rem
+}
+
+.ProductsRegister .radio-div{
+    display: flex;
+    justify-content: start;
+}
+
+.ProductsRegister .radio-labels{
+    font-size: 12px;
 }
