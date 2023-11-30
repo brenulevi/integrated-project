@@ -4,9 +4,9 @@ function DashboardFinances() {
   return (
     <div className="Dashboard">
       <main className="main">
-        <button>Registrar venda</button>
-        <button>Registrar compra</button>
-        <button>Vizualizar caixa</button>
+        <a>Registrar venda</a>
+        <a>Registrar compra</a>
+        <a>Vizualizar caixa</a>
       </main>
     </div>
   );

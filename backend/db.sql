@@ -9,5 +9,5 @@ CREATE TABLE users (
     password varchar(255) not null,
     username varchar(25) not null,
     position integer not null,
-    constraint pk_users primary key (coduser)
+    constraint pk_users primary key (cpf)
 );

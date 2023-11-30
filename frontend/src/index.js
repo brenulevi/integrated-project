@@ -24,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Pages.Profile />
+  },
+  {
+    path: "/products/register",
+    element: <Pages.ProductsRegister />
   }
 ]);
 
