@@ -4,10 +4,10 @@ function DashboardProducts() {
   return (
     <div className="Dashboard">
       <main className="main">
-        <button>Cadastrar produto</button>
-        <button>Alterar produto</button>
-        <button>Deletar produto</button>
-        <button>Visualizar produtos</button>
+        <a href="/products/register">Cadastrar produto</a>
+        <a>Alterar produto</a>
+        <a>Deletar produto</a>
+        <a>Visualizar produtos</a>
       </main>
     </div>
   );

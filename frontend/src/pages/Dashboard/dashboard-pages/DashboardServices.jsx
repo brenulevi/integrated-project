@@ -4,9 +4,9 @@ function DashboardServices() {
   return (
     <div className="Dashboard">
       <main className="main">
-        <button>Registrar serviço</button>
-        <button>Vizualizar serviços</button>
-        <button>Excluir serviço</button>
+        <a>Registrar serviço</a>
+        <a>Vizualizar serviços</a>
+        <a>Excluir serviço</a>
       </main>
     </div>
   );

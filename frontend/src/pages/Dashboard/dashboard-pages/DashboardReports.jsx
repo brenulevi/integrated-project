@@ -4,9 +4,9 @@ function DashboardReports() {
   return (
     <div className="Dashboard">
       <main className="main">
-        <button>Dados do caixa</button>
-        <button>Dados de produtos</button>
-        <button>Dados de serviços</button>
+        <a>Dados do caixa</a>
+        <a>Dados de produtos</a>
+        <a>Dados de serviços</a>
       </main>
     </div>
   );
