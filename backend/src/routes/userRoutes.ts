@@ -2,12 +2,15 @@ import { Router } from "express";
 
 const router: Router = Router();
 
-import { loginUser, registerUser, getLoggedUser } from "../controllers/UserController";
+import { registerUser, loginUser, getUser, getAllUsers, editUser } from "../controllers/UserController";
 
-import { verifyToken } from "../middlewares/userMiddlewares";
+import { verifySuper, verifyToken } from "../middlewares/userMiddlewares";
 
 router.post("/login", loginUser);
 router.post("/register", registerUser);
-router.get("/me", verifyToken, getLoggedUser);
+router.get("/:cpf", verifyToken, getUser);
+router.put("/:cpf", verifyToken, editUser);
+
+// router.get("/", verifyToken, verifySuper, getAllUsers);
 
 export default router;

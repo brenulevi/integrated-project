@@ -1,60 +1,58 @@
 import { Request, Response } from "express";
 
-import { compare, hash } from "bcrypt";
-import { sign } from "jsonwebtoken";
-
-import db from "../database";
-
-import { CustomPayload, CustomRequest } from "../middlewares/userMiddlewares";
+import { Positions, User } from "../models/Users";
 
 export async function loginUser(req: Request, res: Response) {
     const { username, password }: { username: string, password: string } = req.body;
-    try {
-        const data = await db.query("SELECT u.coduser, u.password FROM users u WHERE u.username=$1", [username]);
 
-        if (data.rows.length === 0) {
-            res.status(404).json({ error: "User don't exist" });
-            return;
-        }
+    const token = await User.login(username, password);
+    if (!token)
+        return res.status(404).json({ error: "User not found" });
 
-        if (! await compare(password, data.rows[0].password)) {
-            res.status(401).json({ error: "Invalid Credentials" });
-            return;
-        }
-
-        const token: string = sign({ uid: data.rows[0].coduser }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
-
-        res.status(200).json({ token });
-
-    } catch (err: unknown) {
-        console.error(err);
-    }
+    return res.status(200).json({ token });
 }
 
 export async function registerUser(req: Request, res: Response) {
-    const { username, name, email, password }: { username: string, name: string, email: string, password: string } = req.body;
+    const { cpf, username, name, email, password, position }: { cpf: string, username: string, name: string, email: string, password: string, position: Positions } = req.body;
 
-    try {
-        const hashedPassword = await hash(password, 10);
-        const response = await db.query("SELECT * FROM users WHERE username=$1 or email=$2", [username, email]);
+    const newUser = new User(cpf, username, email, name, password, position);
 
-        if (response.rows.length !== 0) {
-            res.status(403).json({ error: "User already exist" });
-            return;
-        }
-
-        const data = await db.query("INSERT INTO users (name, email, password, username) values ($1, $2, $3, $4)", [name, email, hashedPassword, username]);
-
-        res.status(201).json({ status: "User created", data });
-    } catch (err: unknown) {
-        console.error(err);
+    const response: User | boolean = await newUser.save();
+    if (!response) {
+        return res.status(403).json({ error: "User already exists" });
     }
+
+    return res.status(201).json(response);
 }
 
-export async function getLoggedUser(req: Request, res: Response) {
-    const { uid } = (req as CustomRequest).payload as CustomPayload;
+export async function getUser(req: Request, res: Response) {
+    const { cpf } = req.params;
 
-    const data = await db.query("SELECT name, email, username FROM users WHERE coduser=$1", [uid]);
+    const queryUser = await User.getByCpf(cpf);
+    if (!queryUser)
+        return res.status(404).json({ error: "User not found" });
 
-    res.status(200).json(data);
+    return res.status(200).json({
+        name: queryUser.getName(),
+        username: queryUser.getUsername(),
+    });
+}
+
+export async function getAllUsers(req: Request, res: Response) {
+    const users = await User.getAll();
+    if (!users)
+        return res.status(404).json({ error: "Users not found" });
+
+    return res.status(200).json(users);
+}
+
+export async function editUser(req: Request, res: Response) {
+    const { cpf } = req.params;
+    const { name, password, username } = req.body;
+
+    const result = await User.editUser(cpf, { name, password, username });
+    console.log(result);
+    if (!result)
+        return res.status(404).json({ error: "User not found" });
+    return res.status(200).json({ status: "User updated" });
 }
