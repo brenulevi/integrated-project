@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { Positions, User } from "../models/Users";
+import { CustomRequest } from "../middlewares/userMiddlewares";
 
 export async function loginUser(req: Request, res: Response) {
     const { username, password }: { username: string, password: string } = req.body;
@@ -35,6 +36,18 @@ export async function getUser(req: Request, res: Response) {
     return res.status(200).json({
         name: queryUser.getName(),
         username: queryUser.getUsername(),
+    });
+}
+
+export async function getLoggedUser(req: CustomRequest, res: Response) {
+
+    const loggedUser = await User.getByCpf(req.cpf as string);
+    if (!loggedUser)
+        return res.status(404).json({ error: "User not found" });
+
+    return res.status(200).json({
+        name: loggedUser.getName(),
+        username: loggedUser.getUsername(),
     });
 }
 

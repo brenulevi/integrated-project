@@ -39,20 +39,17 @@ function Dashboard() {
     }
 
     const request = axios.get("http://localhost:3333/user/me", {
-      withCredentials: true,
+      headers: {
+        token
+      }
     });
     request
       .then((response) => {
-        setUsername(
-          `${response.data.rows[0].name.split(" ")[0]} ${
-            response.data.rows[0].name.split(" ")[
-              response.data.rows[0].name.split(" ").length - 1
-            ]
-          }`
-        );
+        setUsername(response.data.username);
+        localStorage.setItem("loggedUser", JSON.stringify(response.data));
       })
       .catch((err) => {
-        console.log(err);
+        navigation("/")
       });
   }, [navigation]);
 
@@ -81,13 +78,13 @@ function Dashboard() {
       <header className="header">
         <div className="headerSection">
           <h1 className="trademark">DJK Joias</h1>
-          <button
+          <a
             className="profileButton"
-            onClick={() => navigation("/profile")}
+            href="/profile"
           >
             <FaUserAlt />
             {username}
-          </button>
+          </a>
         </div>
         <div className="headerSection-alt">
           <div className="input-section">

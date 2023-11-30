@@ -1,16 +1,24 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
-export async function verifyToken(req: Request, res: Response, next: NextFunction) {
+interface CustomJwtPayload extends JwtPayload {
+    cpf?: string;
+}
+
+export interface CustomRequest extends Request {
+    cpf?: string;
+}
+
+export async function verifyToken(req: CustomRequest, res: Response, next: NextFunction) {
     try {
-        let { token } = req.cookies;
-        if (!token)
-            token = req.headers.token;
+        let { token } = req.headers;
         if (!token)
             return res.status(404).json({ error: "Invalid token" })
 
-        jwt.verify(token, process.env.JWT_SECRET as string);
+        const decoded: CustomJwtPayload = jwt.verify(token as string, process.env.JWT_SECRET as string) as CustomJwtPayload;
+        
+        req.cpf = decoded.cpf;
 
         next();
     } catch (err) {
