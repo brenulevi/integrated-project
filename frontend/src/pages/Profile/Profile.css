@@ -20,3 +20,37 @@
 .Profile a {
     color: black;
 }
+
+.Profile .info {
+    padding: 4rem 1rem 1rem 1rem;
+    margin: 0 2.5rem;
+}
+
+.Profile .form {
+    background-color: var(--primary-color);
+}
+
+.Profile .img .user-icon {
+    width: 8rem;
+    height: auto;
+}
+
+.Profile .img {
+    position: relative;
+}
+
+.Profile .img::after {
+    position: absolute;
+    content: "";
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    z-index: -1;
+}
+
+.Profile .img i svg {
+    background-color: white;
+    border-radius: 100%;
+    border: 5px solid white;
+}

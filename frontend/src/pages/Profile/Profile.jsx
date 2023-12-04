@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 import {
-  FaArrowLeft,
+  FaArrowLeft, FaEdit, FaUserCircle,
   //FaBriefcase,
   //FaEdit,
   //FaPhone,
@@ -37,7 +37,37 @@ function Profile() {
           <p>Bem vindo, {name}</p>
         </div>
         <div className="info">
-          <form method="post"></form>
+          <div className="img">
+            <i>
+              <FaUserCircle className="user-icon" />
+            </i>
+          </div>
+          <div className="form">
+            <form method="post">
+              <div className="input-form">
+                <div className="label">
+                  <label htmlFor="">Nome</label>
+                  <FaEdit />
+                </div>
+                <input type="text" name="" id="" />
+              </div>
+              <div className="input-form">
+                <div className="label">
+                  <label htmlFor="">Cargo</label>
+                  <FaEdit />
+                </div>
+                <input type="text" name="" id="" />
+              </div>
+
+              <div className="input-form">
+                <div className="label">
+                  <label htmlFor="">Telefone</label>
+                  <FaEdit />
+                </div>
+                <input type="text" name="" id="" />
+              </div>
+            </form>
+          </div>
         </div>
       </main>
     </div>
