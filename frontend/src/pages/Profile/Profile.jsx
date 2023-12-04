@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import "./Profile.css";
 
 import {
-  FaArrowLeft, FaEdit, FaUserCircle,
-  //FaBriefcase,
-  //FaEdit,
-  //FaPhone,
-  //FaUser,
+  FaArrowLeft, FaBriefcase, FaEdit, FaPhone, FaUser, FaUserCircle
 } from "react-icons/fa";
 
 function Profile() {
@@ -16,9 +11,11 @@ function Profile() {
   const [name, setName] = useState("none");
 
   useEffect(() => {
-    const name = JSON.parse(localStorage.getItem("loggedUser")).name.split(" ");
-    setName(name[0] + " " + name[name.length - 1]);
-  }, [])
+    const nameArr = JSON.parse(localStorage.getItem("loggedUser")).name.split(" ");
+    setName(nameArr[0] + " " + nameArr[nameArr.length - 1]);
+
+    document.querySelector(".Profile .info .input-form input").value = name;
+  }, []);
 
   return (
     <div className="Profile">
@@ -34,7 +31,7 @@ function Profile() {
       </header>
       <main>
         <div className="welcome">
-          <p>Bem vindo, {name}</p>
+          <p>Bem vindo, {name}!</p>
         </div>
         <div className="info">
           <div className="img">
@@ -44,32 +41,51 @@ function Profile() {
           </div>
           <div className="form">
             <form method="post">
-              <div className="input-form">
+              <div className="input-form disabled">
                 <div className="label">
-                  <label htmlFor="">Nome</label>
+                  <label htmlFor="nameInput">Nome</label>
                   <FaEdit />
                 </div>
-                <input type="text" name="" id="" />
+                <div className="input">
+                  <i>
+                    <FaUser />
+                  </i>
+                  <input type="text" name="nameInput" id="nameInput" disabled />
+                </div>
               </div>
-              <div className="input-form">
+              <div className="input-form disabled">
                 <div className="label">
-                  <label htmlFor="">Cargo</label>
+                  <label htmlFor="positionInput">Cargo</label>
                   <FaEdit />
                 </div>
-                <input type="text" name="" id="" />
+                <div className="input">
+                  <i>
+                    <FaBriefcase />
+                  </i>
+                  <input type="text" name="positionInput" id="positionInput" disabled />
+                </div>
               </div>
 
-              <div className="input-form">
+              <div className="input-form disabled">
                 <div className="label">
-                  <label htmlFor="">Telefone</label>
+                  <label htmlFor="phoneInput">Telefone</label>
                   <FaEdit />
                 </div>
-                <input type="text" name="" id="" />
+                <div className="input">
+                  <i>
+                    <FaPhone />
+                  </i>
+                  <input type="text" name="phoneInput" id="phoneInput" disabled />
+                </div>
               </div>
             </form>
           </div>
         </div>
+        {/* Manage employees (only for managers) */}
+        { }
       </main>
+      <footer id="footer">
+      </footer>
     </div>
   );
 }
