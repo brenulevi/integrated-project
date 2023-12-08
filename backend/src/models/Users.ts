@@ -129,4 +129,5 @@ export class User {
     public getUsername(): string { return this.username; }
     public getEmail(): string { return this.email; }
     public getPassword(): string { return this.password; }
+    public getPosition(): Positions { return this.position; }
 }

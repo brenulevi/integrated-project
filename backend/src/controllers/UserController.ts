@@ -48,6 +48,7 @@ export async function getLoggedUser(req: CustomRequest, res: Response) {
     return res.status(200).json({
         name: loggedUser.getName(),
         username: loggedUser.getUsername(),
+        position: Positions[loggedUser.getPosition()],
     });
 }
 
@@ -64,7 +65,6 @@ export async function editUser(req: Request, res: Response) {
     const { name, password, username } = req.body;
 
     const result = await User.editUser(cpf, { name, password, username });
-    console.log(result);
     if (!result)
         return res.status(404).json({ error: "User not found" });
     return res.status(200).json({ status: "User updated" });

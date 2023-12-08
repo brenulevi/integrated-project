@@ -20,6 +20,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
+import { verifyLogged } from "../../utils/utils";
 
 function Dashboard() {
   document.title = "Login - DJK Joias";
@@ -31,16 +32,14 @@ function Dashboard() {
   const [username, setUsername] = useState("undefined");
 
   useEffect(() => {
-    const token = Cookies.get("token");
-
-    if (!token) {
+    if (!verifyLogged()) {
       navigation("/");
       return;
     }
 
     const request = axios.get("http://localhost:3333/user/me", {
       headers: {
-        token
+        token: Cookies.get("token")
       }
     });
     request

@@ -119,3 +119,10 @@
     position: fixed;
     bottom: 0;
 }
+
+.Profile .manager-button {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

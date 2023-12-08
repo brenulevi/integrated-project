@@ -2,7 +2,7 @@ function DashboardConfigs() {
   return (
     <div className="Dashboard">
       <main className="main">
-        <a>Configs</a>
+        <a href=".main">Configs</a>
       </main>
     </div>
   );

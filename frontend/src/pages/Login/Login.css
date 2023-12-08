@@ -53,19 +53,6 @@
     text-decoration: underline;
 }
 
-.Login .btn {
-    width: 10rem;
-    padding: 0.6rem 1.2rem;
-    align-self: center;
-    background-color: var(--primary-color);
-    color: #000;
-    font-weight: bold;
-    font-size: 1.25rem;
-    border: none;
-
-    transition: all 0.3s;
-}
-
 .Login .btn:hover {
     background-color: var(--light-primary-color);
     cursor: pointer;
