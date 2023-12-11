@@ -28,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/products/register",
     element: <Pages.ProductsRegister />
+  },
+  {
+    path: "/products/visualize",
+    element: <Pages.ProductsVisualize />
   }
 ]);
 

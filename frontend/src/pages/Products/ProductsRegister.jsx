@@ -10,9 +10,9 @@ function ProductsRegister() {
     document.forms[0].addEventListener("submit", event => {
       event.preventDefault();
 
-      console.log("test");
+      console.log(event);
     });
-  }, [])
+  }, []);
 
 
   return (
@@ -36,7 +36,12 @@ function ProductsRegister() {
               <i>
                 <FaCubes className="icon" />
               </i>
-              <input type="text" id="model-input" name="model-input" />
+              <select defaultValue="null" id="material-input" className="input">
+                <option value="null" disabled>Selecione um modelo</option>
+                <option value="prata">Modelo1</option>
+                <option value="ouro10">Modelo2</option>
+                <option value="ouro18">Modelo3</option>
+              </select>
             </div>
           </div>
           <div className="input-form">
