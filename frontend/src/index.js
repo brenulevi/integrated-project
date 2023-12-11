@@ -32,6 +32,18 @@ const router = createBrowserRouter([
   {
     path: "/products/visualize",
     element: <Pages.ProductsVisualize />
+  },
+  {
+    path: "/services/register",
+    element: <Pages.ServicesRegister />
+  },
+  {
+    path: "/services/visualize",
+    element: <Pages.ServicesVisualize />
+  },
+  {
+    path: "/configs/pricestable",
+    element: <Pages.PricesTable />
   }
 ]);
 

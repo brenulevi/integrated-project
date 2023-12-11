@@ -9,7 +9,6 @@ import DashboardConfigs from "./dashboard-pages/DashboardConfigs";
 import DashboardFinances from "./dashboard-pages/DashboardFinances";
 import DashboardProducts from "./dashboard-pages/DashboardProducts";
 import DashboardReports from "./dashboard-pages/DashboardReports";
-import DashboardServices from "./dashboard-pages/DashboardServices";
 
 import {
   FaUserAlt,
@@ -109,14 +108,14 @@ function Dashboard() {
             id="1"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaHammer className="Icons" />
+            <FaDollarSign className="Icons" />
           </button>
           <button
             className="iconsButton"
             id="2"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaDollarSign className="Icons" />
+            <FaRegListAlt className="Icons" />
           </button>
           <button
             className="iconsButton"
@@ -125,26 +124,17 @@ function Dashboard() {
           >
             <IoSettings className="Icons" />
           </button>
-          <button
-            className="iconsButton"
-            id="4"
-            onClick={(e) => underlineButtonPlus(e)}
-          >
-            <FaRegListAlt className="Icons" />
-          </button>
         </div>
       </header>
 
       {activeDashboard === 0 ? (
         <DashboardProducts />
       ) : activeDashboard === 1 ? (
-        <DashboardServices />
-      ) : activeDashboard === 2 ? (
         <DashboardFinances />
-      ) : activeDashboard === 3 ? (
-        <DashboardConfigs />
-      ) : (
+      ) : activeDashboard === 2 ? (
         <DashboardReports />
+      ) : (
+        <DashboardConfigs />
       )}
 
       <footer className="footer">

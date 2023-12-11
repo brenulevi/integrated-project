@@ -1,4 +1,4 @@
-import { FaArrowLeft, FaCubes, FaWeightHanging, FaDollarSign } from "react-icons/fa";
+import { FaArrowLeft, FaCubes, FaWeightHanging,  FaCalendarAlt} from "react-icons/fa";
 import { IoDiamond } from "react-icons/io5";
 
 import "./ProductsRegister.css"
@@ -68,12 +68,12 @@ function ProductsRegister() {
             </div>
           </div>
           <div className="input">
-            <label htmlFor="price-input">Preço</label>
+            <label htmlFor="date-input">Data de Entrada</label>
             <div className="input-section">
               <i>
-                <FaDollarSign className="icon" />
+                <FaCalendarAlt className="icon" />
               </i>
-              <input type="number" id="price-input" />
+              <input type="date" id="date-input" />
             </div>
           </div>
 

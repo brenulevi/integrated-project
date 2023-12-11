@@ -27,12 +27,18 @@ input:focus {
     outline: none;
 }
 
+textarea:focus {
+    outline: none;
+}
+
 :root {
     --primary-color: #EDB546;
     --light-primary-color: #ffbf40;
     --small-text-color: #474747;
     --light-small-text-color: #5a5a5a;
     --header-height: 9rem;
+    --subheader-height: 5rem;
+    --footer-height: 3rem;
 }
 
 .input-section {
@@ -55,6 +61,18 @@ input:focus {
     height: 2.5rem;
     border: none;
     background-color: #FFF;
+}
+
+button[type="submit"]{
+    margin-bottom: 3rem;
+}
+.input-section textarea{
+    width: 100%;
+    border: none;
+    padding-top:0.2rem;
+    padding-bottom:0.2rem;
+    background-color: #FFF;
+    font-size: 1rem;
 }
 
 /* Chrome, Safari, Edge, Opera */
