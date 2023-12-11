@@ -8,6 +8,6 @@ CREATE TABLE users (
     email varchar(40) not null,
     password varchar(255) not null,
     username varchar(25) not null,
-    position integer not null,
+    position integer(10) not null,
     constraint pk_users primary key (cpf)
 );
