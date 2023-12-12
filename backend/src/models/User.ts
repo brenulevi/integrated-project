@@ -32,7 +32,7 @@ export class User {
 
         const hashedPassword = await hash(this.getPassword(), 10);
 
-        await db.query("INSERT INTO users (cpf, name, email, password, username, position) values ($1, $2, $3, $4, $5, $6)",
+        await db.query("INSERT INTO employee (cpf, name, email, password, username, position) values ($1, $2, $3, $4, $5, $6)",
             [this.cpf, this.name, this.email, hashedPassword, this.username, this.position]);
 
         return this;
@@ -52,7 +52,7 @@ export class User {
     }
 
     public static async getAll(): Promise<Array<User> | null> {
-        const response = await db.query("SELECT * FROM users");
+        const response = await db.query("SELECT * FROM employee");
         if (response.rowCount === 0)
             return null;
 
@@ -63,7 +63,7 @@ export class User {
 
     // Get an user from database based on *cpf* query
     public static async getByCpf(query: string): Promise<User | null> {
-        const response = await db.query("SELECT * FROM users WHERE cpf=$1", [query]);
+        const response = await db.query("SELECT * FROM employee WHERE cpf=$1", [query]);
         if (response.rowCount === 0)
             return null;
 
@@ -73,7 +73,7 @@ export class User {
 
     // Get an user from database based on *email* query
     public static async getByEmail(query: string): Promise<User | null> {
-        const response = await db.query("SELECT * FROM users WHERE email=$1", [query]);
+        const response = await db.query("SELECT * FROM employee WHERE email=$1", [query]);
         if (response.rowCount == 0)
             return null;
 
@@ -83,7 +83,7 @@ export class User {
 
     // Get an user from database based on *username* query
     public static async getByUsername(query: string): Promise<User | null> {
-        const response = await db.query("SELECT * FROM users WHERE username=$1", [query]);
+        const response = await db.query("SELECT * FROM employee WHERE username=$1", [query]);
         if (response.rowCount == 0)
             return null;
 
@@ -91,35 +91,16 @@ export class User {
         return new User(data.cpf, data.username, data.email, data.name, data.password, data.position);
     }
 
-    public static async editUser(cpf: string, infos: any): Promise<boolean> {
+    public static async editUser(cpf: string, key: string, value: string): Promise<boolean> {
         const userQuery = await User.getByCpf(cpf);
 
         if (!userQuery)
             return false;
 
-        for (const [key, value] of Object.entries(infos)) {
-            if (!value)
-                delete infos[key];
-        }
+        const response = await db.query(`UPDATE employee SET ${key}=$1 WHERE cpf=$2 RETURNING *`, [value, cpf]);
 
-        const keys = Object.keys(infos);
-
-        let response: any;
-
-        switch (keys.length) {
-            case 1:
-                response = await db.query(`UPDATE users SET ${keys[0]}=$1 WHERE cpf=$2`, [infos[keys[0]], cpf]);
-                break;
-            case 2:
-                response = await db.query(`UPDATE users SET ${keys[0]}=$2, ${keys[1]}=$4 WHERE cpf=$5`, [infos[keys[0]], infos[keys[1]], cpf]);
-                break;
-            case 3:
-                response = await db.query(`UPDATE users SET ${keys[0]}=$2, ${keys[1]}=$4, ${keys[2]}=$6 WHERE cpf=$7`, [infos[keys[0]], infos[keys[1]], infos[keys[2]], cpf]);
-                break;
-            default:
-                break;
-        }
-
+        console.log(response);
+        
         return true;
     }
 

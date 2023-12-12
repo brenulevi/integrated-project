@@ -93,6 +93,31 @@
     color: #303030;
 }
 
+.Profile .form .input-form .label button {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.Profile .form .input-form .label i .check {
+    display: flex;
+}
+
+.Profile .form .input-form.disabled .label i .check {
+    display: none;
+}
+
+.Profile .form .input-form.disabled .label i .edit {
+    display: flex;
+}
+
+.Profile .form .input-form .label i .edit {
+    display: none;
+}
+
 .Profile .form .input-form .input {
     display: flex;
     background-color: white;

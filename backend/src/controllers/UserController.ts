@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { Positions, User } from "../models/Users";
+import { Positions, User } from "../models/User";
 import { CustomRequest } from "../middlewares/userMiddlewares";
 
 export async function loginUser(req: Request, res: Response) {
@@ -49,6 +49,7 @@ export async function getLoggedUser(req: CustomRequest, res: Response) {
         name: loggedUser.getName(),
         username: loggedUser.getUsername(),
         position: Positions[loggedUser.getPosition()],
+        email: loggedUser.getEmail()
     });
 }
 
@@ -60,11 +61,11 @@ export async function getAllUsers(req: Request, res: Response) {
     return res.status(200).json(users);
 }
 
-export async function editUser(req: Request, res: Response) {
-    const { cpf } = req.params;
-    const { name, password, username } = req.body;
+export async function editMyUser(req: CustomRequest, res: Response) {
+    const cpf = req.cpf;
+    const { key, value } = req.body;
 
-    const result = await User.editUser(cpf, { name, password, username });
+    const result = await User.editUser(cpf as string, key, value);
     if (!result)
         return res.status(404).json({ error: "User not found" });
     return res.status(200).json({ status: "User updated" });
