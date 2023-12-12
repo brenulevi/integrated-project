@@ -13,9 +13,11 @@ app.use(cookieParser());
 
 import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
+import priceRoutes from "./routes/priceRoutes";
 
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
+app.use("/price", priceRoutes);
 
 const PORT: string | undefined = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));

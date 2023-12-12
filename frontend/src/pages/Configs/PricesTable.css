@@ -49,6 +49,32 @@
     margin-top: 2px;
 }
 
-.PricesTable .icon {
+.PricesTable .input .check {
+    display: flex;
+}
+
+.PricesTable .input.disabled .check {
+    display: none;
+}
+
+.PricesTable .input.disabled .edit {
+    display: flex;
+}
+
+.PricesTable .input .edit {
+    display: none;
+}
+
+.PricesTable .input button {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1rem;
+}
+
+.PricesTable .label {
+    display: flex;
+    justify-content: space-between;
 }
