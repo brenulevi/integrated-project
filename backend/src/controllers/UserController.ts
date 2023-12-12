@@ -70,3 +70,22 @@ export async function editMyUser(req: CustomRequest, res: Response) {
         return res.status(404).json({ error: "User not found" });
     return res.status(200).json({ status: "User updated" });
 }
+
+export async function editUser(req: Request, res: Response) {
+    const { cpf } = req.params;
+    const { key, value } = req.body;
+
+    const result = await User.editUser(cpf, key, value);
+    if (!result)
+        return res.status(404).json({ error: "User not found" });
+    return res.status(200).json({ status: "User updated" });
+}
+
+export async function deleteUser(req: Request, res: Response) {
+    const { cpf } = req.params;
+
+    const result = await User.remove(cpf);
+    if (!result)
+        return res.status(404).json({ error: "User not found" });
+    return res.status(200).json({ status: "User removed" });
+}

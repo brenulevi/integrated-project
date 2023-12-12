@@ -1,0 +1,28 @@
+.UserCard {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #575757;
+    background-color: var(--primary-color);
+    padding-left: 1rem;
+    box-shadow: 0px 0px 2px 1px rgb(209, 209, 209);
+}
+
+.UserCard .infos {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.UserCard button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.UserCard .icons {
+    display: flex;
+    border-left: 1px solid #575757;
+    padding: 1rem 1rem;
+    gap: 1.2rem;
+    font-size: 1rem;
+}

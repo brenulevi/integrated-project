@@ -6,7 +6,18 @@ import ProductsVisualize from "./Products/ProductsVisualize";
 import ServicesRegister from "./Services/ServicesRegister";
 import ServicesVisualize from "./Services/ServicesVisualize";
 import PricesTable from "./Configs/PricesTable";
+import Users from "./Users/Users";
 
-const Pages = { PricesTable, ServicesVisualize, ServicesRegister, ProductsVisualize, ProductsRegister, Dashboard, Login, Profile };
+const Pages = {
+    PricesTable,
+    ServicesVisualize,
+    ServicesRegister,
+    ProductsVisualize,
+    ProductsRegister,
+    Dashboard,
+    Login,
+    Profile,
+    Users
+};
 
 export default Pages;
