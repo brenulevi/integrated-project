@@ -46,7 +46,7 @@ export class User {
         if (! await compare(password, userToLogin.getPassword()))
             return false;
 
-        const token = sign({ cpf: userToLogin.getCpf() }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
+        const token = sign({ cpf: userToLogin.getCpf() }, process.env.JWT_SECRET as string, { expiresIn: "1d" });
 
         return token;
     }
@@ -99,6 +99,20 @@ export class User {
 
         const response = await db.query(`UPDATE employee SET ${key}=$1 WHERE cpf=$2 RETURNING *`, [value, cpf]);
         
+        return true;
+    }
+
+    public static async remove(cpf: string): Promise<boolean> {
+        const userQuery = await User.getByCpf(cpf);
+
+        if(!userQuery)
+            return false;
+        
+        // await db.query("DELETE FROM serviceMovement WHERE cpf=$1", [cpf]);
+        // await db.query("SELECT ")
+        // await db.query("DELETE FROM productMovement WHERE cpf=$1", [cpf]);
+        // await db.query("DELETE FROM employee WHERE cpf=$1", [cpf]);
+
         return true;
     }
 

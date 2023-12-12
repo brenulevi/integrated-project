@@ -44,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/configs/pricestable",
     element: <Pages.PricesTable />
+  },
+  {
+    path: "/users",
+    element: <Pages.Users />
   }
 ]);
 
