@@ -7,16 +7,18 @@ import "./PricesTable.css"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function PricesTable() {
   const navigation = useNavigate();
   const [silver, setSilver] = useState();
   const [gold10k, setGold10k] = useState();
   const [gold18k, setGold18k] = useState();
+  const [user, setUser] = useState();
 
   let infos = {
     P: "",
-    G10: "",
+    G18: "",
     G18: ""
   }
 
@@ -24,6 +26,14 @@ function PricesTable() {
     if (!verifyLogged()) {
       navigation("/");
       return;
+    }
+    try {
+      const request = axios.get("http://localhost:3333/user/me", { headers: { token: Cookies.get("token") } });
+      request.then(response => {
+        setUser(response.data);
+      });
+    } catch (err) {
+      navigation("/");
     }
   }, [navigation]);
 
@@ -88,6 +98,7 @@ function PricesTable() {
             <div className="input P disabled">
               <div className="label">
                 <label htmlFor="P-input">Prata</label>
+                {user && user.position === "Manager" ?                  
                 <i input="P">
                   <button type="button" className="edit" onClick={(e) => handleEdit(e)}>
                     <FaEdit />
@@ -96,6 +107,7 @@ function PricesTable() {
                     <FaCheck />
                   </button>
                 </i>
+                : <></>}
               </div>
               <div className="input-section">
                 <i>
@@ -113,6 +125,7 @@ function PricesTable() {
             <div className="input G10 disabled">
               <div className="label">
                 <label htmlFor="G10-input">Ouro 10</label>
+                {user && user.position === "Manager" ?                  
                 <i input="G10">
                   <button type="button" className="edit" onClick={(e) => handleEdit(e)}>
                     <FaEdit />
@@ -121,6 +134,7 @@ function PricesTable() {
                     <FaCheck />
                   </button>
                 </i>
+                : <></>}
               </div>
               <div className="input-section">
                 <i>
@@ -138,6 +152,7 @@ function PricesTable() {
             <div className="input G18 disabled">
               <div className="label">
                 <label htmlFor="G18-input">Ouro 18</label>
+                {user && user.position === "Manager" ?                  
                 <i input="G18">
                   <button type="button" className="edit" onClick={(e) => handleEdit(e)}>
                     <FaEdit />
@@ -146,6 +161,7 @@ function PricesTable() {
                     <FaCheck />
                   </button>
                 </i>
+                : <></>}
               </div>
               <div className="input-section">
                 <i>

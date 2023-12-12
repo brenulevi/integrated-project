@@ -53,7 +53,7 @@ CREATE TABLE  IF NOT EXISTS sold(
 
 CREATE TABLE  IF NOT EXISTS service(
     id serial NOT NULL,
-    status integer NOT NULL,
+    status varchar(30) NOT NULL,
     model varchar(30) NOT NULL,
     material varchar(30) NOT NULL,
     budget numeric NOT NULL,
@@ -94,8 +94,8 @@ INSERT INTO client(cpf, name, phone) VALUES ('50060070011', 'Cliente 2', '554990
 INSERT INTO product(model, material, weight, entered) VALUES ('alianca', 'G10', 150.50, '02-01-2002');
 INSERT INTO product(model, material, weight, entered) VALUES ('pulseira', 'P', 300.00, '05-03-2010');
 
-INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES (1, 'placeholder service 1', 'anel', 'prata',130.35, '05-04-2008', '10020030011');
-INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES (2, 'placeholder service 2', 'corrente', 'ouro 10', 13.00, '25-04-2008', '50060070011');
+INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES ('Fabricação', 'placeholder service 1', 'anel', 'prata',130.35, '05-04-2008', '10020030011');
+INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES ('Fabricação', 'placeholder service 2', 'corrente', 'ouro 10', 13.00, '25-04-2008', '50060070011');
 
 INSERT INTO serviceMovement(value, descr, method, sid, cpf) VALUES (120.30, 'service movement 1', 'credit', 1, '60020030044');
 INSERT INTO serviceMovement(value, descr, method, sid, cpf) VALUES (1200.00, 'service movement 2', 'debit', 2, '60020030044');
