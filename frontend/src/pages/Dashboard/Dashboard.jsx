@@ -13,9 +13,7 @@ import DashboardReports from "./dashboard-pages/DashboardReports";
 import {
   FaUserAlt,
   FaWarehouse,
-  FaDollarSign,
   FaRegListAlt,
-  FaHammer,
   FaSearch,
 } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
@@ -108,18 +106,11 @@ function Dashboard() {
             id="1"
             onClick={(e) => underlineButtonPlus(e)}
           >
-            <FaDollarSign className="Icons" />
-          </button>
-          <button
-            className="iconsButton"
-            id="2"
-            onClick={(e) => underlineButtonPlus(e)}
-          >
             <FaRegListAlt className="Icons" />
           </button>
           <button
             className="iconsButton"
-            id="3"
+            id="2"
             onClick={(e) => underlineButtonPlus(e)}
           >
             <IoSettings className="Icons" />
@@ -130,8 +121,6 @@ function Dashboard() {
       {activeDashboard === 0 ? (
         <DashboardProducts />
       ) : activeDashboard === 1 ? (
-        <DashboardFinances />
-      ) : activeDashboard === 2 ? (
         <DashboardReports />
       ) : (
         <DashboardConfigs />

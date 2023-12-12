@@ -98,8 +98,6 @@ export class User {
             return false;
 
         const response = await db.query(`UPDATE employee SET ${key}=$1 WHERE cpf=$2 RETURNING *`, [value, cpf]);
-
-        console.log(response);
         
         return true;
     }
