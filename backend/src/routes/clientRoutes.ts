@@ -6,6 +6,6 @@ import { getAllClients } from "../controllers/ClientController";
 import { verifySuper, verifyToken } from "../middlewares/userMiddlewares";
 
 // router.post("/", verifyToken, registerProduct);
-router.get("/", getAllClients);
+router.get("/", verifyToken, getAllClients);
 
 export default router;

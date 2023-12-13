@@ -25,7 +25,7 @@ function Login() {
       Cookies.set("token", response.data.token, { sameSite: "Lax" });
       navigation("/dashboard");
     }).catch(err => {
-      console.error(err);
+      alert(err.response);
     });
   }
 

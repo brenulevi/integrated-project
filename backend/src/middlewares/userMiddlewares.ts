@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { Positions, User } from "../models/User";
 
 interface CustomJwtPayload extends JwtPayload {
     cpf?: string;
@@ -26,6 +27,13 @@ export async function verifyToken(req: CustomRequest, res: Response, next: NextF
     }
 }
 
-export async function verifySuper(req: Request, res: Response, next: NextFunction) {
-    next();
+export async function verifySuper(req: CustomRequest, res: Response, next: NextFunction) {
+    try {
+        const user = await User.getByCpf(req.cpf as string);
+        if(user?.getPosition() === Positions.Employee)
+            return res.status(403).json({ error: "Admin only" });
+        next();
+    } catch (err) {
+        res.status(403).json({ error: err });
+    }
 }

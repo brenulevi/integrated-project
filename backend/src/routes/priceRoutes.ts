@@ -6,8 +6,8 @@ import { editPrice, getAllPrices, getPrice, registerPrice } from "../controllers
 import { verifySuper, verifyToken } from "../middlewares/userMiddlewares";
 
 router.post("/register", verifyToken, registerPrice);
-router.get("/:material", getPrice);
-router.get("/", getAllPrices);
+router.get("/:material", verifyToken, getPrice);
+router.get("/", verifyToken, getAllPrices);
 router.put("/edit", verifyToken, editPrice);
 
 export default router;
