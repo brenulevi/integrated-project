@@ -28,7 +28,9 @@ async function handleLoad() {
         Services = response.data;
     } catch (err) { console.log(err) }
 }
-await handleLoad();
+
+if(window.location.href === "http://localhost:3000/services/visualize")
+    await handleLoad();
 
 function ServicesVisualize() {
     const [idInput, setIdInput] = useState();

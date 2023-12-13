@@ -1,4 +1,8 @@
-import { FaArrowLeft, FaCubes, FaWeightHanging,  FaCalendarAlt} from "react-icons/fa";
+import React from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+
+import { FaArrowLeft, FaCubes, FaWeightHanging, FaCalendarAlt } from "react-icons/fa";
 import { IoDiamond } from "react-icons/io5";
 
 import "./ProductsRegister.css"
@@ -6,13 +10,21 @@ import { useEffect } from "react";
 
 function ProductsRegister() {
 
-  useEffect(() => {
-    document.forms[0].addEventListener("submit", event => {
-      event.preventDefault();
+  function handleSubmit() {
+    const inputs = document.forms[0].elements;
 
-      console.log(event);
-    });
-  }, []);
+    try {
+      const request = axios.post("http://localhost:3333/product/", {
+        model: inputs[0].value,
+        material: inputs[1].value,
+        weight: inputs[2].value,
+        entryDate: inputs[3].value
+      }, { headers: { token: Cookies.get("token") } });
+      request.then(response => {
+        window.location.reload(false);
+      });
+    } catch (err) { console.log(err) }
+  }
 
 
   return (
@@ -38,9 +50,13 @@ function ProductsRegister() {
               </i>
               <select defaultValue="null" id="material-input" className="input">
                 <option value="null" disabled>Selecione um modelo</option>
-                <option value="prata">Modelo1</option>
-                <option value="ouro10">Modelo2</option>
-                <option value="ouro18">Modelo3</option>
+                <option value="Aliança">Aliança</option>
+                <option value="Anel">Anel</option>
+                <option value="Pulseira">Pulseira</option>
+                <option value="Corrente">Corrente</option>
+                <option value="Pingente">Pingente</option>
+                <option value="Brinco">Brinco</option>
+                <option value="Outros">Outros</option>
               </select>
             </div>
           </div>
@@ -52,9 +68,9 @@ function ProductsRegister() {
               </i>
               <select defaultValue="null" id="material-input" className="input">
                 <option value="null" disabled>Selecione um material</option>
-                <option value="prata">Prata</option>
-                <option value="ouro10">Ouro 10k</option>
-                <option value="ouro18">Ouro 18k</option>
+                <option value="P">Prata</option>
+                <option value="G10">Ouro 10k</option>
+                <option value="G18">Ouro 18k</option>
               </select>
             </div>
           </div>
@@ -77,7 +93,7 @@ function ProductsRegister() {
             </div>
           </div>
 
-          <button type="submit" className="btn">Cadastrar</button>
+          <button type="button" className="btn" onClick={() => handleSubmit()}>Cadastrar</button>
         </form>
       </main>
       <footer id="footer"></footer>

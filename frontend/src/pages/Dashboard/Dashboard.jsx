@@ -6,7 +6,7 @@ import axios from "axios";
 import "./Dashboard.css";
 
 import DashboardConfigs from "./dashboard-pages/DashboardConfigs";
-import DashboardFinances from "./dashboard-pages/DashboardFinances";
+// import DashboardFinances from "./dashboard-pages/DashboardFinances";
 import DashboardProducts from "./dashboard-pages/DashboardProducts";
 import DashboardReports from "./dashboard-pages/DashboardReports";
 
