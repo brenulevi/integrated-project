@@ -57,3 +57,10 @@
 .ServicesRegister main {
     padding-top: var(--subheader-height);
 }
+
+.ServicesRegister .input-section select {
+    width: 100%;
+    background: none;
+    border: none;
+    height: 2.3rem;
+}

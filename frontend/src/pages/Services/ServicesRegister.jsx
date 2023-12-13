@@ -9,6 +9,18 @@ import axios from "axios";
 import { verifyLogged } from "../../utils/utils";
 import Cookies from "js-cookie";
 
+let clients = [];
+
+async function getClients() {
+  const request = axios.get("http://localhost:3333/client", { headers: { token: Cookies.get("token") } });
+  request.then(response => {
+    clients = response.data;
+  }).catch(err => window.location.href = "/");
+}
+
+if (window.location.href === "http://localhost:3000/services/register")
+  await getClients();
+
 function ServicesRegister() {
 
   useEffect(() => {
@@ -20,9 +32,7 @@ function ServicesRegister() {
 
   function handleSubmit() {
     try {
-      console.log("aqui0");
-      console.log(document.forms[0].elements);
-      axios.post("http://localhost:3333/service/", {
+      const request = axios.post("http://localhost:3333/service/", {
         model: document.forms[0].elements[1].value,
         material: document.forms[0].elements[2].value,
         budget: parseFloat(document.forms[0].elements[3].value),
@@ -31,6 +41,7 @@ function ServicesRegister() {
         promissedDate: (document.forms[0].elements[6].value ? (document.forms[0].elements[6].value) : null),
         descr: (document.forms[0].elements[4].value ? document.forms[0].elements[4].value : null),
       }, { headers: { token: Cookies.get("token") } });
+      request.then(response => window.location.reload(false));
     } catch (err) { window.location.href = "/" }
   }
 
@@ -52,12 +63,17 @@ function ServicesRegister() {
         <form method="POST">
 
           <div className="input">
-            <label htmlFor="weight-input">Cliente (CPF)</label>
+            <label htmlFor="cpf-input">Cliente (CPF)</label>
             <div className="input-section">
               <i>
                 <IoPerson className="icon" />
               </i>
-              <input type="number" id="weight-input" required />
+              <select defaultValue="null" type="number" id="cpf-input" required >
+                <option value="null">Selecione um cliente</option>
+                {clients.map(client => {
+                  return <option key={client.cpf} value={client.cpf}>{client.cpf}</option>
+                })}
+              </select>
             </div>
           </div>
 
@@ -96,17 +112,17 @@ function ServicesRegister() {
           </div>
 
           <div className="input">
-            <label htmlFor="price-input">Orçamento</label>
+            <label htmlFor="budget-input">Orçamento</label>
             <div className="input-section">
               <i>
                 <FaDollarSign className="icon" />
               </i>
-              <input type="number" step="0.01" id="price-input" required />
+              <input type="number" step="0.01" id="budget-input" required />
             </div>
           </div>
 
           <div className="input">
-            <label htmlFor="weight-input">Descrição</label>
+            <label htmlFor="descr-input">Descrição</label>
             <div className="input-section">
               <i>
                 <FiFileText className="icon" />
@@ -116,22 +132,22 @@ function ServicesRegister() {
           </div>
 
           <div className="input">
-            <label htmlFor="date-input">Data de Entrada</label>
+            <label htmlFor="entryDate-input">Data de Entrada</label>
             <div className="input-section">
               <i>
                 <FaCalendarAlt className="icon" />
               </i>
-              <input type="date" id="date-input" required />
+              <input type="date" id="entryDate-input" required />
             </div>
           </div>
 
           <div className="input">
-            <label htmlFor="date-input">Data de Promessa</label>
+            <label htmlFor="promisseDate-input">Data de Promessa</label>
             <div className="input-section">
               <i>
                 <FaCalendarAlt className="icon" />
               </i>
-              <input type="date" id="date-input" required />
+              <input type="date" id="promisseDate-input" required />
             </div>
           </div>
 

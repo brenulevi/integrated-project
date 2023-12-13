@@ -15,12 +15,13 @@ import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
 import priceRoutes from "./routes/priceRoutes";
 import serviceRoutes from "./routes/serviceRoutes";
+import clientRoutes from "./routes/clientRoutes";
 
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/price", priceRoutes);
 app.use("/service", serviceRoutes);
-
+app.use("/client", clientRoutes);
 
 const PORT: string | undefined = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}...`));
