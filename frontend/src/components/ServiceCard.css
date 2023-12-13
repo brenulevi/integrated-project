@@ -1,4 +1,4 @@
-.Card {
+.ServiceCard {
     display: flex;
     justify-content: space-between;
     border: 1px solid #575757;
@@ -8,7 +8,11 @@
     border-radius: 8px;
 }
 
-.Card .idpart{
+.ServiceCard .name{
+    font-weight: bold;
+}
+
+.ServiceCard .idpart{
     display: flex;
     border-right: 1px solid #575757;
     align-items: center;
@@ -17,7 +21,7 @@
     font-size: 1rem;
 }
 
-.Card .infos{
+.ServiceCard .infos{
     display: flex;
     align-items: left;
     flex-direction: column;
@@ -26,13 +30,13 @@
     width: 100%;
 }
 
-.Card button {
+.ServiceCard button {
     background: none;
     border: none;
     font-size: 1rem;
 }
 
-.Card .icons {
+.ServiceCard .icons {
     display: flex;
     border-left: 1px solid #575757;
     padding: 1rem 1rem;
@@ -40,7 +44,7 @@
     font-size: 1rem;
 }
 
-.Card .icon {
+.ServiceCard .icon {
     margin-right: 0.4rem;
     align-items: center;
 }
