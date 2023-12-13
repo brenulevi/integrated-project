@@ -15,9 +15,9 @@ function ServiceCard({ setId, setStatus, setModel, setMaterial, setBudget, setEn
         setModel(service.model);
         setMaterial(service.material);
         setBudget(service.budget);
-        setEntryDate(service.entered);
-        setPromissedDate(service.promissed);
-        setSoldDate(service.sold);
+        setEntryDate(service.entered.split("T")[0]);
+        setPromissedDate(service.promissed ? service.promissed.split("T")[0] : "");
+        setSoldDate(service.sold ? service.sold.split("T")[0] : "");
         setDescr(service.descr);
         setCpf(service.cpf);
         setName(service.name);

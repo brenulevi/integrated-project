@@ -27,7 +27,7 @@ export class Service {
 
     public async save(): Promise<Service> {
         await db.query("INSERT INTO service (status, model, material, budget, entered, promissed, sold, descr, cpf) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
-            [this.status, this.model, this.material, this.budget, this.entryDate, (this.promissedDate === null? null : this.promissedDate), (this.soldDate === null ? null : this.soldDate), (this.descr === null ? null : this.descr),  this.cpf]);
+            [this.status, this.model, this.material, this.budget, this.entryDate, this.promissedDate, this.soldDate, this.descr, this.cpf]);
 
         return this;
     }

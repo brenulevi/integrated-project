@@ -7,8 +7,8 @@ export async function registerService(req: Request, res: Response) {
     const {model, material, budget, entryDate, cpf, promissedDate, descr}: {model: string, material: string, budget: number, entryDate: Date, cpf: string, promissedDate: Date, descr: string} = req.body;
     
     const newService = new Service( model, material, budget, entryDate, cpf, promissedDate, descr);
-
     const response = await newService.save();
+    console.log(response);
 
     return res.status(201).json(response);
 }

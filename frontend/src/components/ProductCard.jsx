@@ -13,8 +13,8 @@ function ProductCard({ setId, setModel, setMaterial, setWeight, setEntryDate, se
         setModel(product.model);
         setMaterial(product.material);
         setWeight(product.weight);
-        setEntryDate(product.entered);
-        setSoldDate(product.sold);
+        setEntryDate(product.entered.split("T")[0]);
+        setSoldDate(product.sold ? product.sold.split("T")[0] : "");
     }
 
     function handleDelete() {
