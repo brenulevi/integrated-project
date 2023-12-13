@@ -18,7 +18,7 @@ function PricesTable() {
 
   let infos = {
     P: "",
-    G18: "",
+    G10: "",
     G18: ""
   }
 

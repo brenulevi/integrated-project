@@ -24,7 +24,9 @@ async function handleLoad() {
         products = response.data;
     } catch (err) { console.log(err) }
 }
-await handleLoad();
+
+if(window.location.href === "http://localhost:3000/products/visualize")
+    await handleLoad();
 
 function ProductsVisualize() {
     const [idInput, setIdInput] = useState();

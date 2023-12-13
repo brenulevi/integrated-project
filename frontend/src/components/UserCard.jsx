@@ -1,9 +1,9 @@
 import React from "react";
-import axios from "axios";
-import { FaEdit, FaTrash } from "react-icons/fa";
+// import axios from "axios";
+import { FaEdit } from "react-icons/fa";
 
 import "./UserCard.css";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 function UserCard({ setCpf, setName, setEmail, setUsername, user }) {
     function handleEdit() {
@@ -14,18 +14,18 @@ function UserCard({ setCpf, setName, setEmail, setUsername, user }) {
         setUsername(user.username);
     }
 
-    function handleDelete() {
-        const answer = window.confirm("Tem certeza de que deseja excluir esse produto?");
-        if (!answer)
-            return;
+    // function handleDelete() {
+    //     const answer = window.confirm("Tem certeza de que deseja excluir esse produto?");
+    //     if (!answer)
+    //         return;
 
-        try {
-            const request = axios.delete(`http://localhost:3333/user/${user.cpf}`, { headers: { token: Cookies.get("token") } });
-            request.then(response => {
-                window.location.reload(false);
-            })
-        } catch (err) { console.log(err) }
-    }
+    //     try {
+    //         const request = axios.delete(`http://localhost:3333/user/${user.cpf}`, { headers: { token: Cookies.get("token") } });
+    //         request.then(response => {
+    //             window.location.reload(false);
+    //         })
+    //     } catch (err) { console.log(err) }
+    // }
 
     return (
         <div className="UserCard">
