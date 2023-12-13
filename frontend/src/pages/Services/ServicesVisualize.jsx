@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { FaArrowLeft, FaCalendarAlt, FaCheck, FaCubes, FaEdit, FaIdCard, FaWeightHanging } from "react-icons/fa";
+import { FaArrowLeft, FaCalendarAlt, FaCheck, FaCubes, FaEdit, FaHammer, FaIdCard, FaWeightHanging, FaUserAlt } from "react-icons/fa";
+import { IoChatbubbleEllipses } from "react-icons/io5";
 
-import ProductCard from "../../components/ProductCard";
+import ServiceCard from "../../components/ServiceCard";
 
 import "./ServicesVisualize.css";
 import { IoDiamond } from "react-icons/io5";
 
-let Services = [];
+let services = [];
 let infos = {
     status: "",
     model: "",
@@ -25,20 +26,24 @@ let infos = {
 async function handleLoad() {
     try {
         const response = await axios.get("http://localhost:3333/service/", { headers: { token: Cookies.get("token") } });
-        Services = response.data;
+        services = response.data;
+        console.log(services)
     } catch (err) { console.log(err) }
 }
 await handleLoad();
 
 function ServicesVisualize() {
     const [idInput, setIdInput] = useState();
-    const [status, setStatus] = useState();
+    const [statusInput, setStatusInput] = useState();
     const [modelInput, setModelInput] = useState();
     const [materialInput, setMaterialInput] = useState();
     const [budgetInput, setBudgetInput] = useState();
     const [entryDateInput, setEntryDateInput] = useState();
     const [promissedDateInput, setPromissedDateInput] = useState();
     const [soldDateInput, setSoldDateInput] = useState();
+    const [descrInput, setDescrInput] = useState();
+    const [cpfInput, setCpfInput] = useState();
+    const [nameInput, setNameInput] = useState();
 
     function handleClose() {
         document.querySelector(".ServicesVisualize .edit").classList.remove("show");
@@ -64,7 +69,7 @@ function ServicesVisualize() {
             return;
 
         try {
-            const request = axios.put(`http://localhost:3333/product/${idInput}`, {
+            const request = axios.put(`http://localhost:3333/service/${idInput}`, {
                 key: target,
                 value: elementInput.value
             }, {
@@ -87,7 +92,7 @@ function ServicesVisualize() {
                 <form className="form" method="post">
                     <div className="input-form id disabled">
                         <div className="label">
-                            <label htmlFor="idInput">Id</label>
+                            <label htmlFor="idInput">ID</label>
                         </div>
                         <div className="input">
                             <i>
@@ -102,6 +107,26 @@ function ServicesVisualize() {
                             />
                         </div>
                     </div>
+
+                    <div className="input-form status disabled">
+                        <div className="label">
+                            <label htmlFor="statusInput">Status</label>
+                        </div>
+                        <div className="input">
+                            <i>
+                                <FaHammer />
+                            </i>
+                            <input
+                                type="text"
+                                name="statusInput"
+                                id="statusInput"
+                                disabled
+                                value={statusInput ? statusInput : ""}
+                                onChange={event => setStatusInput(event.target.value)}
+                            />
+                        </div>
+                    </div>
+
                     <div className="input-form model disabled">
                         <div className="label">
                             <label htmlFor="modelInput">Modelo</label>
@@ -129,6 +154,7 @@ function ServicesVisualize() {
                             />
                         </div>
                     </div>
+
                     <div className="input-form material disabled">
                         <div className="label">
                             <label htmlFor="materialInput">Material</label>
@@ -155,10 +181,11 @@ function ServicesVisualize() {
                             />
                         </div>
                     </div>
-                    <div className="input-form weight disabled">
+
+                    <div className="input-form budget disabled">
                         <div className="label">
-                            <label htmlFor="weightInput">Peso</label>
-                            <i input="weight">
+                            <label htmlFor="budgetInput">Orçamento</label>
+                            <i input="budget">
                                 <button type="button" className="editIcon" onClick={(e) => handleEdit(e)}>
                                     <FaEdit />
                                 </button>
@@ -173,14 +200,15 @@ function ServicesVisualize() {
                             </i>
                             <input
                                 type="number"
-                                name="weightInput"
-                                id="weightInput"
+                                name="budgetInput"
+                                id="budgetInput"
                                 disabled
                                 value={budgetInput ? budgetInput : ""}
                                 onChange={event => setBudgetInput(event.target.value)}
                             />
                         </div>
                     </div>
+
                     <div className="input-form entryDate disabled">
                         <div className="label">
                             <label htmlFor="entryInput">Data de entrada</label>
@@ -207,9 +235,37 @@ function ServicesVisualize() {
                             />
                         </div>
                     </div>
+
+                    <div className="input-form promissedDate disabled">
+                        <div className="label">
+                            <label htmlFor="promissedInput">Data de promessa</label>
+                            <i input="promissedDate">
+                                <button type="button" className="editIcon" onClick={(e) => handleEdit(e)}>
+                                    <FaEdit />
+                                </button>
+                                <button type="button" className="checkIcon" onClick={(e) => handleCheck(e)}>
+                                    <FaCheck />
+                                </button>
+                            </i>
+                        </div>
+                        <div className="input">
+                            <i>
+                                <FaCalendarAlt />
+                            </i>
+                            <input
+                                type="date"
+                                name="promissedInput"
+                                id="promissedInput"
+                                disabled
+                                value={promissedDateInput ? promissedDateInput : ""}
+                                onChange={event => setPromissedDateInput(event.target.value)}
+                            />
+                        </div>
+                    </div>
+
                     <div className="input-form soldDate disabled">
                         <div className="label">
-                            <label htmlFor="soldInput">Data de venda</label>
+                            <label htmlFor="soldInput">Data de entrega</label>
                             <i input="soldDate">
                                 <button type="button" className="editIcon" onClick={(e) => handleEdit(e)}>
                                     <FaEdit />
@@ -233,6 +289,61 @@ function ServicesVisualize() {
                             />
                         </div>
                     </div>
+
+                    <div className="input-form descr disabled">
+                        <div className="label">
+                            <label htmlFor="descrInput">Descrição</label>
+                            <i input="descr">
+                                <button type="button" className="editIcon" onClick={(e) => handleEdit(e)}>
+                                    <FaEdit />
+                                </button>
+                                <button type="button" className="checkIcon" onClick={(e) => handleCheck(e)}>
+                                    <FaCheck />
+                                </button>
+                            </i>
+                        </div>
+                        <div className="input">
+                            <i>
+                                <IoChatbubbleEllipses />
+                            </i>
+                            <input
+                                type="text"
+                                name="descrInput"
+                                id="descrInput"
+                                disabled
+                                value={descrInput ? descrInput : ""}
+                                onChange={event => setDescrInput(event.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="input-form cpf disabled">
+                        <div className="label">
+                            <label htmlFor="cpfInput">Cliente</label>
+                            <i input="cpf">
+                                <button type="button" className="editIcon" onClick={(e) => handleEdit(e)}>
+                                    <FaEdit />
+                                </button>
+                                <button type="button" className="checkIcon" onClick={(e) => handleCheck(e)}>
+                                    <FaCheck />
+                                </button>
+                            </i>
+                        </div>
+                        <div className="input">
+                            <i>
+                                <FaUserAlt />
+                            </i>
+                            <input
+                                type="text"
+                                name="cpfInput"
+                                id="cpfInput"
+                                disabled
+                                value={cpfInput ? cpfInput : ""}
+                                onChange={event => setCpfInput(event.target.value)}
+                            />
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <header id="header">
@@ -242,21 +353,25 @@ function ServicesVisualize() {
                             <FaArrowLeft />
                         </i>
                     </a>
-                    <h1 className="title">Visualize peças</h1>
+                    <h1 className="title">Visualize serviços</h1>
                 </nav>
             </header>
             <main>
                 <div className="cards">
-                    {Services.map(product => {
-                        return <ProductCard
+                    {services.map(service => {
+                        return <ServiceCard
                             setId={setIdInput}
+                            setStatus={setStatusInput}
                             setModel={setModelInput}
                             setMaterial={setMaterialInput}
                             setBudget={setBudgetInput}
                             setEntryDate={setEntryDateInput}
+                            setPromissedDate={setPromissedDateInput}
                             setSoldDate={setSoldDateInput}
-                            key={product.id}
-                            product={product} />
+                            setDescr={setDescrInput}
+                            setCpf={setCpfInput}
+                            setName={setNameInput}
+                            service={service} />
                     })}
                 </div>
             </main>

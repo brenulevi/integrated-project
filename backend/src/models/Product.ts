@@ -25,7 +25,7 @@ export class Product {
     }
 
     public static async getAll(): Promise<Array<Product> | null> {
-        const response = await db.query("SELECT * FROM product");
+        const response = await db.query("SELECT * FROM product ORDER BY id");
         if (response.rowCount === 0)
             return null;
         return response.rows;

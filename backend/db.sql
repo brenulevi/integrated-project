@@ -24,7 +24,7 @@ CREATE TABLE  IF NOT EXISTS client(
 CREATE TABLE  IF NOT EXISTS product(
     id serial NOT NULL,
     model varchar(30) NOT NULL,
-    material varchar(5) NOT NULL,
+    material varchar(30) NOT NULL,
     weight numeric NOT NULL,
     entered date NOT NULL,
     sold date,
@@ -91,11 +91,11 @@ INSERT INTO employee(cpf, name, email, password, username, position) VALUES ('12
 INSERT INTO client(cpf, name, phone) VALUES ('10020030011', 'Cliente 1', '5549900100200');
 INSERT INTO client(cpf, name, phone) VALUES ('50060070011', 'Cliente 2', '5549900500600');
 
-INSERT INTO product(model, material, weight, entered) VALUES ('alianca', 'G10', 150.50, '02-01-2002');
-INSERT INTO product(model, material, weight, entered) VALUES ('pulseira', 'P', 300.00, '05-03-2010');
+INSERT INTO product(model, material, weight, entered) VALUES ('alianca', 'Ouro 10', 150.50, '02-01-2002');
+INSERT INTO product(model, material, weight, entered) VALUES ('pulseira', 'Prata', 300.00, '05-03-2010');
 
-INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES ('Fabricação', 'placeholder service 1', 'anel', 'prata',130.35, '05-04-2008', '10020030011');
-INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES ('Fabricação', 'placeholder service 2', 'corrente', 'ouro 10', 13.00, '25-04-2008', '50060070011');
+INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES ('Fabricando', 'Tamanho 14 com detalhes em ouro 10k', 'Anel Confort', 'Prata',130.35, '05-04-2008', '10020030011');
+INSERT INTO service(status, descr, model, material, budget, entered, cpf) VALUES ('Fabricando', 'Elo simples, 20cm', 'Corrente Portuguesa', 'Ouro 10', 13.00, '25-04-2008', '50060070011');
 
 INSERT INTO serviceMovement(value, descr, method, sid, cpf) VALUES (120.30, 'service movement 1', 'credit', 1, '60020030044');
 INSERT INTO serviceMovement(value, descr, method, sid, cpf) VALUES (1200.00, 'service movement 2', 'debit', 2, '60020030044');
@@ -107,6 +107,6 @@ INSERT INTO sold(mid, pid) VALUES (1, 1);
 INSERT INTO sold(mid, pid) VALUES (2, 1);
 INSERT INTO sold(mid, pid) VALUES (2, 2);
 
-INSERT INTO priceTable(material, price) VALUES ('G10', 210.00);
-INSERT INTO priceTable(material, price) VALUES ('G18', 380.00);
-INSERT INTO priceTable(material, price) VALUES ('P', 70.00);
+INSERT INTO priceTable(material, price) VALUES ('Ouro 10', 210.00);
+INSERT INTO priceTable(material, price) VALUES ('Ouro 18', 380.00);
+INSERT INTO priceTable(material, price) VALUES ('Prata', 70.00);

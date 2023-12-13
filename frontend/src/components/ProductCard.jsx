@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaWeightHanging, FaCubes } from "react-icons/fa";
+import { IoDiamond } from "react-icons/io5";
 
 import "./ProductCard.css";
 import Cookies from "js-cookie";
@@ -31,10 +32,13 @@ function ProductCard({ setId, setModel, setMaterial, setWeight, setEntryDate, se
 
     return (
         <div className="Card">
-            <div className="infos">
+            <div className="idpart">
                 <p className="id">{product.id}</p>
-                <p className="model">{product.model}</p>
-                <p className="material">{product.material}</p>
+            </div>
+            <div className="infos">
+                <p className="model"><FaCubes className="icon"/>{product.model}</p>
+                <p className="material"><IoDiamond className="icon"/>{product.material}</p>
+                <p className="weight"><FaWeightHanging className="icon"/>{product.weight} gr</p>
             </div>
             <div className="icons">
                 <button onClick={() => handleEdit()}>

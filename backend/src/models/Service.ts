@@ -33,7 +33,7 @@ export class Service {
     }
 
     public static async getAll(): Promise<Array<Service> | null> {
-        const response = await db.query("SELECT * FROM service");
+        const response = await db.query("SELECT * FROM service NATURAL JOIN client ORDER BY id");
         if (response.rowCount === 0)
             return null;
         return response.rows;
