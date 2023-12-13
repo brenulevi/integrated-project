@@ -5,16 +5,25 @@ import { IoPerson } from "react-icons/io5";
 
 import "./ServicesRegister.css"
 import { useEffect } from "react";
+import axios from "axios";
 
 function ServicesRegister() {
 
-  useEffect(() => {
-    document.forms[0].addEventListener("submit", event => {
-      event.preventDefault();
-
-      console.log(event);
+function handleSubmit(){  
+  try {
+    console.log("aqui0");
+    console.log(document.forms[0].elements);
+    axios.post("http://localhost:3333/service/", {
+      model: document.forms[0].elements[1].value,
+      material: document.forms[0].elements[2].value,
+      budget: parseFloat(document.forms[0].elements[3].value),
+      entryDate: (document.forms[0].elements[5].value),
+      cpf: document.forms[0].elements[0].value,
+      promissedDate: (document.forms[0].elements[6].value ? (document.forms[0].elements[6].value) : null),
+      descr: (document.forms[0].elements[4].value ? document.forms[0].elements[4].value : null),
     });
-  }, []);
+  } catch (err) { console.log(err) }
+}
 
 
   return (
@@ -32,6 +41,7 @@ function ServicesRegister() {
       <main>
         <h2 className="title">Informações do Serviço</h2>
         <form method="POST">
+
         <div className="input">
             <label htmlFor="weight-input">Cliente (CPF)</label>
             <div className="input-section">
@@ -41,6 +51,7 @@ function ServicesRegister() {
               <input type="number" id="weight-input" />
             </div>
           </div>
+
           <div className="input">
             <label htmlFor="model-input">Modelo</label>
             <div className="input-section">
@@ -59,6 +70,7 @@ function ServicesRegister() {
               </select>
             </div>
           </div>
+
           <div className="input-form">
             <label htmlFor="material-input">Material</label>
             <div className="input-section">
@@ -73,24 +85,17 @@ function ServicesRegister() {
               </select>
             </div>
           </div>
-          <div className="input">
-            <label htmlFor="weight-input">Peso esperado</label>
-            <div className="input-section">
-              <i>
-                <FaWeightHanging className="icon" />
-              </i>
-              <input type="number" id="weight-input" />
-            </div>
-          </div>
+
           <div className="input">
             <label htmlFor="price-input">Orçamento</label>
             <div className="input-section">
               <i>
                 <FaDollarSign className="icon" />
               </i>
-              <input type="number" id="price-input" />
+              <input type="number" step="0.01" id="price-input" />
             </div>
           </div>
+
           <div className="input">
             <label htmlFor="weight-input">Descrição</label>
             <div className="input-section">
@@ -100,6 +105,7 @@ function ServicesRegister() {
               <textarea type="text" rows="3" spellCheck="false" id="descr-input" />
             </div>
           </div>
+
           <div className="input">
             <label htmlFor="date-input">Data de Entrada</label>
             <div className="input-section">
@@ -109,6 +115,7 @@ function ServicesRegister() {
               <input type="date" id="date-input" />
             </div>
           </div>
+
           <div className="input">
             <label htmlFor="date-input">Data de Promessa</label>
             <div className="input-section">
@@ -118,7 +125,8 @@ function ServicesRegister() {
               <input type="date" id="date-input" />
             </div>
           </div>
-          <button type="submit" className="btn">Cadastrar</button>
+
+          <button type="button" className="btn" onClick={handleSubmit}>Cadastrar</button>
         </form>
       </main>
       <footer id="footer"></footer>

@@ -12,17 +12,17 @@ export class Service {
     private descr?: string | null;
     private cpf: string;
 
-    constructor(status: string, model: string, material: string, budget: number, entryDate: Date, cpf: string, promissedDate?: Date, soldDate?: Date, descr?: string, id?: string) {
+    constructor( model: string, material: string, budget: number, entryDate: Date, cpf: string, promissedDate?: Date, descr?: string, id?: string) {
         this.id = id;
-        this.status = status;
         this.model = model;
         this.material = material;
         this.budget = budget;
         this.entryDate = entryDate;
         this.promissedDate = promissedDate;
-        this.soldDate = soldDate;
         this.descr = descr;
         this.cpf = cpf;
+        this.status = "Fabricando";
+        this.soldDate = null;
     }
 
     public async save(): Promise<Service> {
