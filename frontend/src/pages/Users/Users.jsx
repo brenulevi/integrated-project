@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { FaArrowLeft, FaBriefcase, FaCheck, FaEdit, FaIdCard, FaUser } from "react-icons/fa";
+import { FaArrowLeft, FaBriefcase, FaCheck, FaEdit, FaIdCard, FaPlusCircle, FaUser } from "react-icons/fa";
 
 import UserCard from "../../components/UserCard";
 
@@ -63,7 +63,7 @@ function Users() {
             request.then(async (response) => {
                 window.location.reload(false);
             })
-        } catch (err) { console.log(err) }
+        } catch (err) { window.location.href = "/" }
     }
 
     return (
@@ -182,7 +182,7 @@ function Users() {
                     <h1 className="title">Usuários</h1>
                 </nav>
             </header>
-            <main>
+            <main id="main">
                 <div className="cards">
                     {users.map(user => {
                         return <UserCard
@@ -195,6 +195,13 @@ function Users() {
                     })}
                 </div>
             </main>
+            <footer id="footer">
+                <button onClick={() => {window.location.href = "/create"}}>
+                    <i>
+                        <FaPlusCircle />
+                    </i>
+                </button>
+            </footer>
         </div>
     );
 }

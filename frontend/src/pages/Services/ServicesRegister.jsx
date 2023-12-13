@@ -1,4 +1,4 @@
-import { FaArrowLeft, FaCubes, FaWeightHanging, FaDollarSign, FaCalendarAlt} from "react-icons/fa";
+import { FaArrowLeft, FaCubes, FaWeightHanging, FaDollarSign, FaCalendarAlt } from "react-icons/fa";
 import { IoDiamond } from "react-icons/io5";
 import { FiFileText } from "react-icons/fi";
 import { IoPerson } from "react-icons/io5";
@@ -6,24 +6,32 @@ import { IoPerson } from "react-icons/io5";
 import "./ServicesRegister.css"
 import { useEffect } from "react";
 import axios from "axios";
+import { verifyLogged } from "../../utils/utils";
 
 function ServicesRegister() {
 
-function handleSubmit(){  
-  try {
-    console.log("aqui0");
-    console.log(document.forms[0].elements);
-    axios.post("http://localhost:3333/service/", {
-      model: document.forms[0].elements[1].value,
-      material: document.forms[0].elements[2].value,
-      budget: parseFloat(document.forms[0].elements[3].value),
-      entryDate: (document.forms[0].elements[5].value),
-      cpf: document.forms[0].elements[0].value,
-      promissedDate: (document.forms[0].elements[6].value ? (document.forms[0].elements[6].value) : null),
-      descr: (document.forms[0].elements[4].value ? document.forms[0].elements[4].value : null),
-    });
-  } catch (err) { console.log(err) }
-}
+  useEffect(() => {
+    if (!verifyLogged()) {
+      window.location.href = "/";
+      return;
+    }
+  }, []);
+
+  function handleSubmit() {
+    try {
+      console.log("aqui0");
+      console.log(document.forms[0].elements);
+      axios.post("http://localhost:3333/service/", {
+        model: document.forms[0].elements[1].value,
+        material: document.forms[0].elements[2].value,
+        budget: parseFloat(document.forms[0].elements[3].value),
+        entryDate: (document.forms[0].elements[5].value),
+        cpf: document.forms[0].elements[0].value,
+        promissedDate: (document.forms[0].elements[6].value ? (document.forms[0].elements[6].value) : null),
+        descr: (document.forms[0].elements[4].value ? document.forms[0].elements[4].value : null),
+      });
+    } catch (err) { window.location.href = "/" }
+  }
 
 
   return (
@@ -42,13 +50,13 @@ function handleSubmit(){
         <h2 className="title">Informações do Serviço</h2>
         <form method="POST">
 
-        <div className="input">
+          <div className="input">
             <label htmlFor="weight-input">Cliente (CPF)</label>
             <div className="input-section">
               <i>
                 <IoPerson className="icon" />
               </i>
-              <input type="number" id="weight-input" />
+              <input type="number" id="weight-input" required />
             </div>
           </div>
 
@@ -58,7 +66,7 @@ function handleSubmit(){
               <i>
                 <FaCubes className="icon" />
               </i>
-              <select defaultValue="null" id="material-input" className="input">
+              <select defaultValue="null" id="material-input" className="input" required>
                 <option value="null" disabled>Selecione um modelo</option>
                 <option value="alianca">Aliança</option>
                 <option value="anel">Anel</option>
@@ -77,7 +85,7 @@ function handleSubmit(){
               <i>
                 <IoDiamond className="icon" />
               </i>
-              <select defaultValue="null" id="material-input" className="input">
+              <select defaultValue="null" id="material-input" className="input" required>
                 <option value="null" disabled>Selecione um material</option>
                 <option value="prata">Prata</option>
                 <option value="ouro10">Ouro 10k</option>
@@ -92,7 +100,7 @@ function handleSubmit(){
               <i>
                 <FaDollarSign className="icon" />
               </i>
-              <input type="number" step="0.01" id="price-input" />
+              <input type="number" step="0.01" id="price-input" required />
             </div>
           </div>
 
@@ -100,9 +108,9 @@ function handleSubmit(){
             <label htmlFor="weight-input">Descrição</label>
             <div className="input-section">
               <i>
-                <FiFileText className="icon"/>
+                <FiFileText className="icon" />
               </i>
-              <textarea type="text" rows="3" spellCheck="false" id="descr-input" />
+              <textarea type="text" rows="3" spellCheck="false" id="descr-input" required />
             </div>
           </div>
 
@@ -110,9 +118,9 @@ function handleSubmit(){
             <label htmlFor="date-input">Data de Entrada</label>
             <div className="input-section">
               <i>
-                <FaCalendarAlt className="icon"/>
+                <FaCalendarAlt className="icon" />
               </i>
-              <input type="date" id="date-input" />
+              <input type="date" id="date-input" required />
             </div>
           </div>
 
@@ -120,9 +128,9 @@ function handleSubmit(){
             <label htmlFor="date-input">Data de Promessa</label>
             <div className="input-section">
               <i>
-                <FaCalendarAlt className="icon"/>
+                <FaCalendarAlt className="icon" />
               </i>
-              <input type="date" id="date-input" />
+              <input type="date" id="date-input" required />
             </div>
           </div>
 

@@ -7,11 +7,11 @@ import { registerUser, loginUser, getUser, getAllUsers, editMyUser, getLoggedUse
 import { verifySuper, verifyToken } from "../middlewares/userMiddlewares";
 
 router.post("/login", loginUser);
-router.post("/register", registerUser);
 router.get("/me", verifyToken, getLoggedUser);
 router.get("/:cpf", verifyToken, getUser);
 router.put("/", verifyToken, editMyUser);
 
+router.post("/register", verifyToken, verifySuper, registerUser);
 router.put("/:cpf", verifyToken, verifySuper, editUser);
 router.delete("/:cpf", verifyToken, verifySuper, deleteUser);
 router.get("/", verifyToken, verifySuper, getAllUsers);

@@ -7,6 +7,7 @@ import ServicesRegister from "./Services/ServicesRegister";
 import ServicesVisualize from "./Services/ServicesVisualize";
 import PricesTable from "./Configs/PricesTable";
 import Users from "./Users/Users";
+import CreateUser from "./CreateUser/CreateUser";
 
 const Pages = {
     PricesTable,
@@ -17,7 +18,8 @@ const Pages = {
     Dashboard,
     Login,
     Profile,
-    Users
+    Users,
+    CreateUser
 };
 
 export default Pages;

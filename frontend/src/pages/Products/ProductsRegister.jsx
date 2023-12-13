@@ -7,8 +7,16 @@ import { IoDiamond } from "react-icons/io5";
 
 import "./ProductsRegister.css"
 import { useEffect } from "react";
+import { verifyLogged } from "../../utils/utils";
 
 function ProductsRegister() {
+
+  useEffect(() => {
+    if (!verifyLogged()) {
+      window.location.href = "/";
+      return;
+    }
+  }, []);
 
   function handleSubmit() {
     const inputs = document.forms[0].elements;
@@ -23,7 +31,7 @@ function ProductsRegister() {
       request.then(response => {
         window.location.reload(false);
       });
-    } catch (err) { console.log(err) }
+    } catch (err) { window.location.href = "/" }
   }
 
 
@@ -48,7 +56,7 @@ function ProductsRegister() {
               <i>
                 <FaCubes className="icon" />
               </i>
-              <select defaultValue="null" id="material-input" className="input">
+              <select defaultValue="null" id="material-input" className="input" required>
                 <option value="null" disabled>Selecione um modelo</option>
                 <option value="Aliança">Aliança</option>
                 <option value="Anel">Anel</option>
@@ -66,7 +74,7 @@ function ProductsRegister() {
               <i>
                 <IoDiamond className="icon" />
               </i>
-              <select defaultValue="null" id="material-input" className="input">
+              <select defaultValue="null" id="material-input" className="input" required>
                 <option value="null" disabled>Selecione um material</option>
                 <option value="P">Prata</option>
                 <option value="G10">Ouro 10k</option>
@@ -80,7 +88,7 @@ function ProductsRegister() {
               <i>
                 <FaWeightHanging className="icon" />
               </i>
-              <input type="number" id="weight-input" />
+              <input type="number" id="weight-input" required />
             </div>
           </div>
           <div className="input">
@@ -89,7 +97,7 @@ function ProductsRegister() {
               <i>
                 <FaCalendarAlt className="icon" />
               </i>
-              <input type="date" id="date-input" />
+              <input type="date" id="date-input" required />
             </div>
           </div>
 

@@ -48,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/users",
     element: <Pages.Users />
+  },
+  {
+    path: "/create",
+    element: <Pages.CreateUser />
   }
 ]);
 

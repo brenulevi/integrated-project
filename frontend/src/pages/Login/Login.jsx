@@ -53,11 +53,6 @@ function Login() {
                 </i>
                 <input type="password" name="" id="" className="input" />
               </div>
-              <small>
-                <a id="forgot-pass" href="#forgot-pass">
-                  Esqueci a senha
-                </a>
-              </small>
             </div>
 
             <button className="btn" type="submit">

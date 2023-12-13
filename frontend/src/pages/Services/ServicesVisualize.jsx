@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -9,6 +9,7 @@ import ServiceCard from "../../components/ServiceCard";
 
 import "./ServicesVisualize.css";
 import { IoDiamond } from "react-icons/io5";
+import { verifyLogged } from "../../utils/utils";
 
 let services = [];
 let infos = {
@@ -28,13 +29,21 @@ async function handleLoad() {
         const response = await axios.get("http://localhost:3333/service/", { headers: { token: Cookies.get("token") } });
         services = response.data;
         console.log(services)
-    } catch (err) { console.log(err) }
+    } catch (err) { window.location.href = "/" }
 }
 
-if(window.location.href === "http://localhost:3000/services/visualize")
+if (window.location.href === "http://localhost:3000/services/visualize")
     await handleLoad();
 
 function ServicesVisualize() {
+
+    useEffect(() => {
+        if (!verifyLogged()) {
+            window.location.href = "/";
+            return;
+        }
+    }, []);
+
     const [idInput, setIdInput] = useState();
     const [statusInput, setStatusInput] = useState();
     const [modelInput, setModelInput] = useState();
@@ -362,6 +371,7 @@ function ServicesVisualize() {
                 <div className="cards">
                     {services.map(service => {
                         return <ServiceCard
+                            key={service.id}
                             setId={setIdInput}
                             setStatus={setStatusInput}
                             setModel={setModelInput}

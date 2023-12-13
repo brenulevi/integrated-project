@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -8,6 +8,7 @@ import ProductCard from "../../components/ProductCard";
 
 import "./ProductsVisualize.css";
 import { IoDiamond } from "react-icons/io5";
+import { verifyLogged } from "../../utils/utils";
 
 let products = [];
 let infos = {
@@ -22,13 +23,21 @@ async function handleLoad() {
     try {
         const response = await axios.get("http://localhost:3333/product/", { headers: { token: Cookies.get("token") } });
         products = response.data;
-    } catch (err) { console.log(err) }
+    } catch (err) { window.location.href = "/" }
 }
 
-if(window.location.href === "http://localhost:3000/products/visualize")
+if (window.location.href === "http://localhost:3000/products/visualize")
     await handleLoad();
 
 function ProductsVisualize() {
+
+    useEffect(() => {
+        if (!verifyLogged()) {
+            window.location.href = "/";
+            return;
+        }
+    }, []);
+
     const [idInput, setIdInput] = useState();
     const [modelInput, setModelInput] = useState();
     const [materialInput, setMaterialInput] = useState();
@@ -69,7 +78,7 @@ function ProductsVisualize() {
             request.then(async (response) => {
                 window.location.reload(false);
             })
-        } catch (err) { console.log(err) }
+        } catch (err) { window.location.href = "/" }
     }
 
     return (
