@@ -36,6 +36,8 @@ export async function getAllPrices(req: Request, res: Response) {
 export async function editPrice(req: Request, res: Response) {
     const { material, price } = req.body;
 
+    console.log(material, price);
+
     const result = await PriceTable.editPrice(material, price);
     if (!result) 
         return res.status(404).json({ error: "Material not found" });

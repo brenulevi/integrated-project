@@ -107,6 +107,6 @@ INSERT INTO sold(mid, pid) VALUES (1, 1);
 INSERT INTO sold(mid, pid) VALUES (2, 1);
 INSERT INTO sold(mid, pid) VALUES (2, 2);
 
-INSERT INTO priceTable(material, price) VALUES ('Ouro 10', 210.00);
-INSERT INTO priceTable(material, price) VALUES ('Ouro 18', 380.00);
-INSERT INTO priceTable(material, price) VALUES ('Prata', 70.00);
+INSERT INTO priceTable(material, price) VALUES ('G10', 210.00);
+INSERT INTO priceTable(material, price) VALUES ('G18', 380.00);
+INSERT INTO priceTable(material, price) VALUES ('P', 70.00);

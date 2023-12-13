@@ -17,9 +17,9 @@ function PricesTable() {
   const [user, setUser] = useState();
 
   let infos = {
-    P: "",
-    G10: "",
-    G18: ""
+    "P": "",
+    "G10": "",
+    "G18": ""
   }
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function PricesTable() {
         setGold10k(response.data[0].price);
         setGold18k(response.data[1].price);
         setSilver(response.data[2].price);
-      });
+      }, { headers: { token: Cookies.get("token") } });
     } catch (err) {
       console.log(err)
     }
@@ -73,7 +73,7 @@ function PricesTable() {
       axios.put("http://localhost:3333/price/edit", {
         material: target,
         price: elementInput.value
-      });
+      }, { headers: { token: Cookies.get("token") } });
     } catch (err) { console.log(err) }
   }
 
@@ -97,7 +97,7 @@ function PricesTable() {
 
             <div className="input P disabled">
               <div className="label">
-                <label htmlFor="P-input">Prata</label>
+                <label htmlFor="P-input">P</label>
                 {user && user.position === "Manager" ?                  
                 <i input="P">
                   <button type="button" className="edit" onClick={(e) => handleEdit(e)}>
@@ -124,7 +124,7 @@ function PricesTable() {
 
             <div className="input G10 disabled">
               <div className="label">
-                <label htmlFor="G10-input">Ouro 10</label>
+                <label htmlFor="G10-input">G10</label>
                 {user && user.position === "Manager" ?                  
                 <i input="G10">
                   <button type="button" className="edit" onClick={(e) => handleEdit(e)}>
@@ -151,7 +151,7 @@ function PricesTable() {
 
             <div className="input G18 disabled">
               <div className="label">
-                <label htmlFor="G18-input">Ouro 18</label>
+                <label htmlFor="G18-input">G18</label>
                 {user && user.position === "Manager" ?                  
                 <i input="G18">
                   <button type="button" className="edit" onClick={(e) => handleEdit(e)}>

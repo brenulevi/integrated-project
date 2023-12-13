@@ -3,12 +3,11 @@ import { Request, Response } from "express";
 import { Service } from "../models/Service";
 
 export async function registerService(req: Request, res: Response) {
-    console.log("aqui1");
+    
     const {model, material, budget, entryDate, cpf, promissedDate, descr}: {model: string, material: string, budget: number, entryDate: Date, cpf: string, promissedDate: Date, descr: string} = req.body;
-    console.log("aqui2");
+    
     const newService = new Service( model, material, budget, entryDate, cpf, promissedDate, descr);
 
-    console.log("aqui3");
     const response = await newService.save();
 
     return res.status(201).json(response);

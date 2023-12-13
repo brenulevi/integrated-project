@@ -7,6 +7,7 @@ import "./ServicesRegister.css"
 import { useEffect } from "react";
 import axios from "axios";
 import { verifyLogged } from "../../utils/utils";
+import Cookies from "js-cookie";
 
 function ServicesRegister() {
 
@@ -29,7 +30,7 @@ function ServicesRegister() {
         cpf: document.forms[0].elements[0].value,
         promissedDate: (document.forms[0].elements[6].value ? (document.forms[0].elements[6].value) : null),
         descr: (document.forms[0].elements[4].value ? document.forms[0].elements[4].value : null),
-      });
+      }, { headers: { token: Cookies.get("token") } });
     } catch (err) { window.location.href = "/" }
   }
 
